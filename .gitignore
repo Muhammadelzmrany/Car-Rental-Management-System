@@ -1,0 +1,31 @@
+# Configuration files
+config.local.php
+*.local.php
+
+# Log files
+logs/
+*.log
+
+# Uploaded files (optional - uncomment if you don't want to track uploads)
+# uploads/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+
+
+
+
+
