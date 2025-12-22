@@ -1,0 +1,25 @@
+<?php
+/**
+ * Local Configuration Example
+ * مثال على ملف الإعدادات المحلي
+ * 
+ * Copy this file to config.local.php and update with your local settings
+ * انسخ هذا الملف إلى config.local.php وحدّث الإعدادات المحلية
+ */
+
+// Override database settings for local development
+// تجاوز إعدادات قاعدة البيانات للتطوير المحلي
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', 'your_password_here');
+define('DB_NAME', 'carrentalsystem');
+
+// Enable error display for development
+// تفعيل عرض الأخطاء للتطوير
+define('DISPLAY_ERRORS', true);
+
+
+
+
+
+

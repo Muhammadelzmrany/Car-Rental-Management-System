@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Play Video</title>
+    
+    <!-- Box Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Cinzel:wght@400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Stylish&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(5px); /* Add blur to the video */
+        }
+
+        h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 5rem;
+            font-family: "EB Garamond", serif; /* Apply font family */
+            text-align: center;
+            z-index: 10; /* Ensure the text appears above the video */
+            animation: fadeIn 3s ease-in-out, scaleUp 2s ease-in-out infinite alternate; /* Add animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff; /* Solid white background */
+            border-bottom: 2px solid #000000; /* Add a sharp black border */
+            padding: 10px 0; /* Remove smooth padding */
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar li {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted src="img/WhatsApp Video 2024-12-25 at 10.28.57 AM.mp4"></video>
+    <h2>Payment Completed Successfully</h2>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo"><img src="img/icon b copy.png" alt="Logo"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
+</body>
+</html>
