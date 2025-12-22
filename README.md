@@ -1,10 +1,3 @@
-# Car Rental System
-## نظام إيجار السيارات
-
-**Course:** Introduction to Database Systems  
-**Project Type:** Academic Database Project
-
----
 
 ## 📋 Project Requirements
 
