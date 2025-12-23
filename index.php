@@ -68,11 +68,11 @@ $branches = $branches_stmt->get_result();
 
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
-            <il><a href="#home">HOME</a></il>
-            <il><a href="#ride">RIDE</a></il>
-            <il><a href="#services">SERVICES</a></il>
-            <il><a href="#about">ABOUT</a></il>
-            <il><a href="#reviewS">REVIEWS</a></il>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#ride">RIDE</a></li>
+            <li><a href="#services">SERVICES</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#reviewS">REVIEWS</a></li>
         </ul>
         <?php
         if (isset($_SESSION["id"])) {
@@ -94,8 +94,8 @@ $branches = $branches_stmt->get_result();
     <!--home-->
     <section class="home" id="home">
         <div class="text">
-            <h1><span>LOOKING TO<br>RENT A CAR</span></h1>
-            <p> website allows users to search, compare, and book vehicles online,<br> offering various car categories, pricing options, and secure reservations.<br> It typically includes filters, reviews, and customer support for a seamless experience.</p>
+            <h1><span>LOOKING TO<br>RENT A CAR?</span></h1>
+            <p>Find your perfect ride with our easy-to-use car rental platform. Search, compare, and book vehicles online with competitive pricing, flexible options, and secure reservations. Experience hassle-free car rental with 24/7 customer support.</p>
             <div class="app-stores">
                 <img src="img/ios.png" alt="">
                 <img src="img/512x512.png" alt="">
@@ -105,27 +105,27 @@ $branches = $branches_stmt->get_result();
      <!--ride-->
      <section class="ride"  id="ride">
         <div class="heading">
-            <span>How It's Work</span>
-        <h1>Rental With 3  Steps</h1>
+            <span>How It Works</span>
+        <h1>Rent a Car in 3 Simple Steps</h1>
 
         </div>
         <div class="ride-container">
             <div class="box">
                 <i class='bx bx-map'></i>
                 <h2>Choose A Location</h2>
-                <p>allows users to search, compare, and book vehicles online, offering various car categories, pricing options, and secure reservations. It typically includes filters, reviews, and customer support for a seamless experience.</p>
+                <p>Select your preferred pickup location from our network of branches. We have multiple convenient locations to serve you better.</p>
                 
             </div>
             <div class="box">
                 <i class='bx bx-calendar' ></i>
-                <h2>Pick-Up Date</h2>
-                <p>allows users to search, compare, and book vehicles online, offering various car categories, pricing options, and secure reservations. It typically includes filters, reviews, and customer support for a seamless experience.</p>
+                <h2>Pick Your Dates</h2>
+                <p>Choose your pickup and return dates. We offer flexible rental periods from hours to months, with competitive daily rates.</p>
             </div>
 
             <div class="box">
                 <i class='bx bxs-calendar-star'></i>
-                <h2>Book A Car</h2>
-                <p>allows users to search, compare, and book vehicles online, offering various car categories, pricing options, and secure reservations. It typically includes filters, reviews, and customer support for a seamless experience.</p>
+                <h2>Book Your Car</h2>
+                <p>Browse our wide selection of vehicles, compare prices, and book instantly. Complete your reservation with secure online payment.</p>
                 
             </div>
         </div>
@@ -150,8 +150,8 @@ $branches = $branches_stmt->get_result();
 
 
         <div class="heading">
-            <span>Best SERVICES</span>
-            <h1>Rent Cars Now!!</h1>
+            <span>Our Services</span>
+            <h1>Available Cars for Rent</h1>
         </div>
 
         <div class="services-container">
@@ -193,20 +193,20 @@ $branches = $branches_stmt->get_result();
             </div>
             <div class="about-text">
                 <span>About Us</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat maxime repellat autem nesciunt possimus cupiditate perferendis totam nam saepe velit dolorem vero labore, dolores necessitatibus id modi suscipit, inventore iure.</p>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit doloremque totam harum fugit vel dignissimos nesciunt sint excepturi.</p>
-                <a href="#" class="btn">Learn More</a>
+                <p>We are a trusted car rental service committed to providing you with quality vehicles and exceptional customer service. Our mission is to make car rental simple, affordable, and convenient for everyone.</p>
+                <p>With years of experience in the industry, we offer a wide range of vehicles to suit your needs, from economy cars to luxury vehicles, all maintained to the highest standards for your safety and comfort.</p>
+                <a href="#services" class="btn">Browse Cars</a>
             </div>
         </div>
     </section>
 
-    </section>
-    <!--nwsltter-->
+    <!--newsletter-->
     <section class="newsletter">
-        <h2>Subscribe to Newsletter</h2>
+        <h2>Subscribe to Our Newsletter</h2>
+        <p style="color: rgba(255,255,255,0.9); margin: 10px 0 20px; font-size: 1rem;">Stay updated with our latest offers and car rental deals</p>
         <div class="box">
-            <input type="text" placeholder="Enter Your Email">
-            <a href="$" class="btn">Subscribe</a>
+            <input type="email" placeholder="Enter Your Email">
+            <a href="#" class="btn">Subscribe</a>
         </div>
     </section>
     <div class="copyright">

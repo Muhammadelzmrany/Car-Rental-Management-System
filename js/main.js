@@ -11,20 +11,25 @@ window.onscroll =()=>{
 
 
 }
+// Initialize ScrollReveal with faster, one-time animations
 const sr = ScrollReveal({
-    distance: '60px',
-    duration: 2500,
-    delay: 400,
-    reset: true
+    distance: '40px',
+    duration: 800,
+    delay: 50,
+    reset: false, // Only animate once on page load
+    origin: 'bottom',
+    easing: 'ease-out'
 })
-sr.reveal('.text' ,{delay:200,origin:'top'})
-sr.reveal('.form-container form' ,{delay:200,origin:'left'})
-sr.reveal('.heading' ,{delay:200,origin:'top'})
-sr.reveal('.ride-container .box' ,{delay:600,origin:'top'})
-sr.reveal('.services-container .box' ,{delay:600,origin:'top'})
-sr.reveal('.about-container .box' ,{delay:600,origin:'top'})
-sr.reveal('.reviewS-conrtainer ' ,{delay:600,origin:'top'})
-sr.reveal('.newsletter .box' ,{delay:400,origin:'bottom'})
+
+// Animate elements with staggered delays (only once)
+sr.reveal('.text', {delay: 100, origin: 'top', distance: '50px'})
+sr.reveal('.form-container form', {delay: 150, origin: 'left', distance: '40px'})
+sr.reveal('.heading', {delay: 80, origin: 'top', distance: '30px'})
+sr.reveal('.ride-container .box', {delay: 100, origin: 'bottom', interval: 100, distance: '40px'})
+sr.reveal('.services-container .box', {delay: 100, origin: 'bottom', interval: 80, distance: '40px'})
+sr.reveal('.about-container', {delay: 120, origin: 'left', distance: '50px'})
+sr.reveal('.reviewS-conrtainer', {delay: 100, origin: 'bottom', distance: '40px'})
+sr.reveal('.newsletter .box', {delay: 100, origin: 'bottom', distance: '40px'})
 
 
 
