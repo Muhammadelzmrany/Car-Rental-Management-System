@@ -4,7 +4,7 @@
  * صفحة تسجيل الدخول والتسجيل
  */
 
-require_once 'functions.php';
+require_once '../includes/functions.php';
 
 // Start session
 if (session_status() === PHP_SESSION_NONE) {
@@ -23,7 +23,7 @@ $signup_csrf_token = generate_csrf_token();
   <title>Login and Registration Form</title>
   <!-- Fontawesome CDN Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="../css/login.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -32,14 +32,14 @@ $signup_csrf_token = generate_csrf_token();
     <input type="checkbox" id="flip" <?= (isset($_GET['show']) && $_GET['show'] === 'signup') ? 'checked' : '' ?>>
     <div class="cover">
       <div class="front">
-        <img src="img/log.png" alt="">
+        <img src="../img/log.png" alt="">
         <div class="text">
           <span class="text-1">Every drive begins <br> a new story</span>
           <span class="text-2">Let's hit the road together!</span>
         </div>
       </div>
       <div class="back">
-        <img src="img/chat555555.webp" alt="">
+        <img src="../img/chat555555.webp" alt="">
         <div class="text">
           <span class="text-1">Turn every journey <br> into an experience</span>
           <span class="text-2">Start your adventure today!</span>

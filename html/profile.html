@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Car Rental Portal | My Profile</title>
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+    <!--Custom Style -->
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <!--FontAwesome Font Style -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        .errorWrap {
+            padding: 10px;
+            margin: 0 0 20px 0;
+            background: #fff;
+            border-left: 4px solid #dd3d36;
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+        }
+        .succWrap{
+            padding: 10px;
+            margin: 0 0 20px 0;
+            background: #fff;
+            border-left: 4px solid #5cb85c;
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="header">
+        <?php include('includes/header.php');?>
+    </div>
+</header>
+
+<!-- Page Header -->
+<section class="page-header profile_page">
+    <div class="container">
+        <div class="page-header_wrap">
+            <div class="page-heading">
+                <h1>Your Profile</h1>
+            </div>
+            <ul class="coustom-breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li>Profile</li>
+            </ul>
+        </div>
+    </div>
+    <div class="dark-overlay"></div>
+</section>
+
+<!-- Profile Section -->
+<section class="user_profile inner_pages">
+    <div class="container">
+        <div class="user_profile_info gray-bg padding_4x4_40">
+            <div class="upload_user_logo">
+                <img src="assets/images/dealer-logo.jpg" alt="User Logo">
+            </div>
+
+            <div class="dealer_info">
+                <h5>John Doe</h5>
+                <p>123 Main St, City, Country</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <?php include('includes/sidebar.php');?>
+            </div>
+            <div class="col-md-6 col-sm-8">
+                <div class="profile_wrap">
+                    <h5 class="uppercase underline">General Settings</h5>
+                    <form method="post">
+                        <div class="form-group">
+                            <label class="control-label">Reg Date:</label>
+                            01/01/2020
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Full Name</label>
+                            <input class="form-control white_bg" name="fullname" type="text" value="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email Address</label>
+                            <input class="form-control white_bg" name="emailid" type="email" value="johndoe@example.com" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Phone Number</label>
+                            <input class="form-control white_bg" name="mobilenumber" type="text" value="1234567890" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Date of Birth</label>
+                            <input class="form-control white_bg" name="dob" type="text" value="01/01/1990">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Address</label>
+                            <textarea class="form-control white_bg" name="address" rows="4">123 Main St</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Country</label>
+                            <input class="form-control white_bg" name="country" type="text" value="Country">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">City</label>
+                            <input class="form-control white_bg" name="city" type="text" value="City">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <?php include('includes/footer.php');?>
+</footer>
+
+<!-- Back to top -->
+<div id="back-top" class="back-top">
+    <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/interface.js"></script>
+
+</body>
+</html>

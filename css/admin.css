@@ -1,0 +1,315 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #000000;
+  color: #423636;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Dark Mode */
+/*body.dark-mode {
+  background-color: #1e1e2f;
+  color: #f5f5f5;
+}
+
+body.dark-mode nav {
+  background: #2b2b3b;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .menu-items ul li a {
+  color: #f5f5f5;
+}
+
+body.dark-mode .menu-items ul li a:hover {
+  color: #007bff;
+}
+
+body.dark-mode .dashboard .top .search-box {
+  background: #2b2b3b;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode #add-cars,
+body.dark-mode #payment-operations,
+body.dark-mode #car-reports,
+body.dark-mode #customer-information {
+  background: #2b2b3b;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode #add-cars form label {
+  color: #ddd;
+}
+
+body.dark-mode #add-cars form button {
+  background: #444;
+}
+
+body.dark-mode #add-cars form button:hover {
+  background: #333;
+}
+
+body.dark-mode table th,
+body.dark-mode table td {
+  color: #f5f5f5;
+  border-bottom: 1px solid #444;
+}*/
+
+/* Navigation Bar */
+nav {
+  width: 100%;
+  height: 5em;
+  background: #ffffff;
+  
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.dashboard{
+  display: flex;
+  justify-content: start;
+}
+.logo-image img{
+  width: 4em;
+}
+
+.logo-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-name .logo_name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+}
+.container{
+  display: flex;
+  padding: 3em 3em 3em 1em;
+}
+aside{
+  width: 10%;
+  height: calc(100% - 12em);
+  position: sticky;
+  top: 5em;
+}
+main{
+  width: 90%;
+  height: calc(100% - 12em);
+}
+.menu-items ul {
+  
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.menu-items ul li {
+  margin-bottom: 1rem;
+}
+
+.menu-items ul li a {
+  text-decoration: none;
+  color: #9c9cbe;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+}
+
+.menu-items ul li a:hover {
+  color: #035cba;
+}
+
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Dashboard Section */
+/* .dashboard {
+  margin-left: 250px;
+  padding: 2rem;
+}
+
+.dashboard .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard .top .search-box {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard .top .search-box input {
+  border: none;
+  outline: none;
+  margin-left: 10px;
+} */
+
+/* .dash-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+} */
+
+/* Add Cars Section */
+#add-cars {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#add-cars form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#add-cars form label {
+  font-weight: bold;
+  color: #555;
+}
+
+#add-cars form input,
+#add-cars form select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#add-cars form button {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#add-cars form button:hover {
+  background: #033f7e;
+}
+
+/* Payment Operations Section */
+#payment-operations {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.section{
+  margin: 0.5em 0;
+}
+
+#payment-operations table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#payment-operations table th,
+#payment-operations table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Reports Section */
+#car-reports {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#car-reports h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+#car-reports table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#car-reports table th,
+#car-reports table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.actions button:hover {
+  background: #0056b3;
+}
+
+/* Customer Information Section */
+#customer-information {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#customer-information table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#customer-information table th,
+#customer-information table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.error{
+  color: red !important;
+  font-size: 0.75rem;
+}
+.success{
+  color: green !important;
+  font-size: 0.75rem;
+}

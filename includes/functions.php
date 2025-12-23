@@ -102,7 +102,7 @@ function check_admin() {
  */
 function require_login() {
     if (!check_session()) {
-        header("Location: loginview.php?show=signin");
+        header("Location: ../php/loginview.php?show=signin");
         exit;
     }
 }

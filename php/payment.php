@@ -1,7 +1,7 @@
 <?php
-require_once 'functions.php';
+require_once '../includes/functions.php';
 require_login();
-require_once 'db.php';
+require_once '../includes/db.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -11,7 +11,7 @@ $payment_error = '';
 $payment_success = '';
 $redirect_after_success = false;
 $redirect_delay_seconds = 3;
-$redirect_target = 'index.php';
+$redirect_target = '../index.php';
 $from_return = (isset($_GET['from_return']) && $_GET['from_return'] == '1') || (isset($_POST['from_return']) && $_POST['from_return'] == '1');
 $car_id = 0;
 $reservation_id = isset($_GET['reservation_id']) ? (int)$_GET['reservation_id'] : 0;
@@ -197,7 +197,7 @@ if ($from_return) {
   <?php if ($redirect_after_success): ?>
     <meta http-equiv="refresh" content="<?= (int)$redirect_delay_seconds ?>;url=<?= escape_output($redirect_target) ?>">
   <?php endif; ?>
-  <link rel="stylesheet" href="payment.css" />
+  <link rel="stylesheet" href="../css/payment.css" />
   <title>Document</title>
 
 </head>
@@ -241,7 +241,7 @@ if ($from_return) {
 
                 <div class="card-item__wrapper">
                   <div class="card-item__top">
-                    <img src="img/Cars Pixar copy.png" class="card-item__chip">
+                    <img src="../img/Cars Pixar copy.png" class="card-item__chip">
                     <div class="card-item__type">
                       <transition name="slide-fade-up">
                         <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" v-bind:key="getCardType" alt="" class="card-item__typeImg">
@@ -390,7 +390,7 @@ if ($from_return) {
         <button class="card-form__button" type="submit" <?= empty($payment_error) && $reservation_id > 0 ? '' : 'disabled' ?>>
           <?= $reservation_id > 0 ? 'Complete Payment' : 'Submit' ?>
         </button>
-        <a href="index.php" class="card-form__button" style="display: inline-block; margin-top: 10px; text-align: center; background: #2c7a7b; text-decoration: none;">
+        <a href="../index.php" class="card-form__button" style="display: inline-block; margin-top: 10px; text-align: center; background: #2c7a7b; text-decoration: none;">
           Back to Home
         </a>
       </div>

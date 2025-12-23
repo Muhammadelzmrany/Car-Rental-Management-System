@@ -4,7 +4,7 @@
  * معالجة التسجيل
  */
 
-require_once 'functions.php';
+require_once '../includes/functions.php';
 
 // Start session
 if (session_status() === PHP_SESSION_NONE) {
@@ -68,7 +68,7 @@ if (strlen($address) > 255) {
 }
 
 // Get database connection
-require_once 'db.php';
+require_once '../includes/db.php';
 
 // Check if email already exists
 $check_sql = "SELECT id FROM users WHERE email = ?";
@@ -122,7 +122,7 @@ try {
     
     $stmt->close();
     
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
     
 } catch (Exception $e) {

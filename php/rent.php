@@ -3,9 +3,9 @@
  * Rent Car Flow with flexible duration units (hours/days/weeks/months/years)
  */
 
-require_once 'functions.php';
+require_once '../includes/functions.php';
 require_login();
-require_once 'db.php';
+require_once '../includes/db.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -35,19 +35,19 @@ function fetch_car($conn, $car_id, $for_update = false) {
 if ($method === 'GET') {
     $car_id = isset($_GET['car_id']) ? (int)$_GET['car_id'] : 0;
     if ($car_id <= 0) {
-        header("Location: index.php?error=" . urlencode("No car selected."));
+        header("Location: ../index.php?error=" . urlencode("No car selected."));
         exit;
     }
 
     try {
         $car = fetch_car($conn, $car_id, false);
         if ((int)$car['isavailable'] === 0) {
-            header("Location: index.php?error=" . urlencode("The selected car is not available."));
+            header("Location: ../index.php?error=" . urlencode("The selected car is not available."));
             exit;
         }
     } catch (Exception $e) {
         log_error("Rent car load error: " . $e->getMessage(), __FILE__, __LINE__);
-        header("Location: index.php?error=" . urlencode($e->getMessage()));
+        header("Location: ../index.php?error=" . urlencode($e->getMessage()));
         exit;
     }
 
@@ -59,7 +59,7 @@ if ($method === 'GET') {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rent Car</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <style>
             .rent-form-wrapper { max-width: 500px; margin: 40px auto; padding: 20px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
             .rent-form-wrapper h2 { margin-bottom: 15px; }
@@ -126,18 +126,18 @@ if ($method === 'GET') {
 
 // POST: process rental
 if ($method !== 'POST') {
-    header("Location: index.php?error=" . urlencode("Invalid request method."));
+    header("Location: ../index.php?error=" . urlencode("Invalid request method."));
     exit;
 }
 
 if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
-    header("Location: index.php?error=" . urlencode("Security token mismatch. Please try again."));
+    header("Location: ../index.php?error=" . urlencode("Security token mismatch. Please try again."));
     exit;
 }
 
 $car_id = isset($_POST['car_id']) ? (int)$_POST['car_id'] : 0;
 if ($car_id <= 0) {
-    header("Location: index.php?error=" . urlencode("No car selected."));
+    header("Location: ../index.php?error=" . urlencode("No car selected."));
     exit;
 }
 
@@ -146,7 +146,7 @@ $duration_value = isset($_POST['duration_value']) ? (float)$_POST['duration_valu
 $duration_unit = $_POST['duration_unit'] ?? 'days';
 
 if ($duration_value <= 0) {
-    header("Location: index.php?error=" . urlencode("Duration must be greater than zero."));
+    header("Location: ../index.php?error=" . urlencode("Duration must be greater than zero."));
     exit;
 }
 
@@ -161,7 +161,7 @@ if (!$pickup_dt) {
 }
 
 if (!$pickup_dt) {
-    header("Location: index.php?error=" . urlencode("Invalid pickup date/time."));
+    header("Location: ../index.php?error=" . urlencode("Invalid pickup date/time."));
     exit;
 }
 
@@ -185,12 +185,12 @@ switch ($duration_unit) {
         $seconds = (int)round($duration_value * 365 * 86400);
         break;
     default:
-        header("Location: index.php?error=" . urlencode("Invalid duration unit."));
+        header("Location: ../index.php?error=" . urlencode("Invalid duration unit."));
         exit;
 }
 
 if ($seconds <= 0) {
-    header("Location: index.php?error=" . urlencode("Duration must be greater than zero."));
+    header("Location: ../index.php?error=" . urlencode("Duration must be greater than zero."));
     exit;
 }
 
@@ -198,7 +198,7 @@ $return_ts = $pickup_ts + $seconds;
 $return_dt = (new DateTime())->setTimestamp($return_ts);
 
 if ($return_ts <= $pickup_ts) {
-    header("Location: index.php?error=" . urlencode("Return time must be after pickup time."));
+    header("Location: ../index.php?error=" . urlencode("Return time must be after pickup time."));
     exit;
 }
 
@@ -220,7 +220,7 @@ if ($active_check) {
     $active_result = $active_check->get_result();
     if ($active_result && $active_result->num_rows > 0) {
         $active_check->close();
-        header("Location: index.php?error=" . urlencode("You already have an active reservation."));
+        header("Location: ../index.php?error=" . urlencode("You already have an active reservation."));
         exit;
     }
     $active_check->close();
@@ -370,6 +370,6 @@ try {
         $conn->rollback();
     }
     log_error("Rent car error: " . $e->getMessage(), __FILE__, __LINE__);
-    header("Location: index.php?error=" . urlencode("An error occurred: " . $e->getMessage()));
+    header("Location: ../index.php?error=" . urlencode("An error occurred: " . $e->getMessage()));
     exit;
 }

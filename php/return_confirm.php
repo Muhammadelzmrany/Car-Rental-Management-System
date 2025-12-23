@@ -3,24 +3,24 @@
  * Handle customer return confirmation then redirect to payment (Visa).
  */
 
-require_once 'functions.php';
+require_once '../includes/functions.php';
 require_login();
-require_once 'db.php';
+require_once '../includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
 // CSRF check
 if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
-    header("Location: index.php?error=" . urlencode("Security token mismatch. Please try again."));
+    header("Location: ../index.php?error=" . urlencode("Security token mismatch. Please try again."));
     exit;
 }
 
 $reservation_id = isset($_POST['reservation_id']) ? (int)$_POST['reservation_id'] : 0;
 if ($reservation_id <= 0) {
-    header("Location: index.php?error=" . urlencode("Invalid reservation."));
+    header("Location: ../index.php?error=" . urlencode("Invalid reservation."));
     exit;
 }
 
@@ -79,6 +79,6 @@ try {
         $conn->rollback();
     }
     log_error("Return confirmation error: " . $e->getMessage(), __FILE__, __LINE__);
-    header("Location: index.php?error=" . urlencode("Return processing failed. Please try again."));
+    header("Location: ../index.php?error=" . urlencode("Return processing failed. Please try again."));
     exit;
 }

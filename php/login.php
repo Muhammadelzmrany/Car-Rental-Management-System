@@ -4,7 +4,7 @@
  * معالجة تسجيل الدخول
  */
 
-require_once 'functions.php';
+require_once '../includes/functions.php';
 
 // Start session
 if (session_status() === PHP_SESSION_NONE) {
@@ -37,7 +37,7 @@ if (!validate_email($email)) {
 }
 
 // Get database connection
-require_once 'db.php';
+require_once '../includes/db.php';
 
 // Prepare and execute query
 $sql = "SELECT id, name, email, password, isadmin FROM users WHERE email = ?";
@@ -85,9 +85,9 @@ try {
     
     // Redirect based on user type
     if ($_SESSION["isAdmin"]) {
-        header("Location: admin/index.php");
+        header("Location: ../admin/index.php");
     } else {
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
     exit;
     

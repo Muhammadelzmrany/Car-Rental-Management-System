@@ -4,8 +4,8 @@
  * فحص اتصال قاعدة البيانات
  */
 
-require_once 'config.php';
-require_once 'functions.php';
+require_once '../includes/config.php';
+require_once '../includes/functions.php';
 
 echo "<h2>Car Rental System - Database Check</h2>";
 echo "<hr>";

@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:blanchedalmond;
+}
+
+.location-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+  h2{
+    color: #020000;
+    margin-bottom: 60px;
+   }
+   iframe{
+    width: 90%;
+    height: 500px;
+    filter: invert(100%);
+
+}

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+include('includes/db.php');
 
 // جلب السيارات المتاحة فقط
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
@@ -56,7 +56,7 @@ $branches = $branches_stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>car rental web</title>
     <!--link css-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!--box icon-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
@@ -79,14 +79,14 @@ $branches = $branches_stmt->get_result();
         ?>
             <div class="head-btn">
                 <label class="welcome">Welcome: <?= $_SESSION["userName"] ?></label>
-                <a href="logout.php" class="sign-in">Sign out</a>
+                <a href="php/logout.php" class="sign-in">Sign out</a>
             </div>
         <?php
         } else {
         ?>
             <div class="head-btn">
-                <a href="loginview.php?show=signup" class="sign-up">Sign up</a>
-                <a href="loginview.php?show=signin" class="sign-in">Sign In</a>
+                <a href="php/loginview.php?show=signup" class="sign-up">Sign up</a>
+                <a href="php/loginview.php?show=signin" class="sign-in">Sign In</a>
             </div>
         <?php } ?>
     </header>
@@ -167,7 +167,7 @@ $branches = $branches_stmt->get_result();
                             <p><?= $row['year'] ?? '' ?></p>
                             <h3><?= $row['name'] . " " . $row['model'] ?></h3>
                             <h2>$<?= $row['price_per_day'] ?> <span>/day</span></h2>
-                            <a href="rent.php?car_id=<?= (int)$row['id'] ?>" class="btn">Rent Now</a>
+                            <a href="php/rent.php?car_id=<?= (int)$row['id'] ?>" class="btn">Rent Now</a>
                         </div>
             <?php
                     }
@@ -220,6 +220,6 @@ $branches = $branches_stmt->get_result();
     <!--scrollreveal-->
     <script src="https://unpkg.com/scrollreveal"></script>
     <!--link to js-->
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

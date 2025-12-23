@@ -4,8 +4,8 @@
  * البحث المتقدم عن السيارات
  */
 
-require_once 'functions.php';
-require_once 'db.php';
+require_once '../includes/functions.php';
+require_once '../includes/db.php';
 
 // Get search parameters
 $search = isset($_GET['search']) ? sanitize_input(trim($_GET['search'])) : '';
@@ -112,7 +112,7 @@ $price_range = $price_range_stmt->get_result()->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Car Search</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <style>
         .search-container {
@@ -155,7 +155,7 @@ $price_range = $price_range_stmt->get_result()->fetch_assoc();
 </head>
 <body>
     <header>
-        <a href="index.php" class="logo"><img src="img/icon b copy.png" alt=""></a>
+        <a href="../index.php" class="logo"><img src="../img/icon b copy.png" alt=""></a>
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
             <li><a href="index.php#home">HOME</a></li>
@@ -252,7 +252,7 @@ $price_range = $price_range_stmt->get_result()->fetch_assoc();
             ?>
                     <div class="box">
                         <div class="box-img">
-                            <img src="uploads/<?= escape_output($row['image_name'] ?? 'default.jpg') ?>" alt="<?= escape_output($row['name']) ?>">
+                            <img src="../uploads/<?= escape_output($row['image_name'] ?? 'default.jpg') ?>" alt="<?= escape_output($row['name']) ?>">
                         </div>
                         <p><?= escape_output($row['year']) ?></p>
                         <h3><?= escape_output($row['name'] . " " . $row['model']) ?></h3>

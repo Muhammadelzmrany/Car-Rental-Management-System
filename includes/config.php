@@ -21,21 +21,21 @@ define('MAX_LOGIN_ATTEMPTS', 5);
 define('LOGIN_LOCKOUT_TIME', 900); // 15 minutes in seconds
 
 // Application Configuration
-define('UPLOAD_DIR', __DIR__ . '/uploads/');
+define('UPLOAD_DIR', dirname(__DIR__) . '/uploads/');
 define('MAX_FILE_SIZE', 2097152); // 2MB in bytes
 define('ALLOWED_IMAGE_TYPES', ['jpg', 'jpeg', 'png', 'gif']);
 
 // Error Reporting (Set to false in production)
 define('DISPLAY_ERRORS', false);
 define('LOG_ERRORS', true);
-define('ERROR_LOG_FILE', __DIR__ . '/logs/error.log');
+define('ERROR_LOG_FILE', dirname(__DIR__) . '/logs/error.log');
 
 // Timezone
 date_default_timezone_set('UTC');
 
 // Load local configuration if exists (for development)
-if (file_exists(__DIR__ . '/config.local.php')) {
-    require_once __DIR__ . '/config.local.php';
+if (file_exists(dirname(__DIR__) . '/config.local.php')) {
+    require_once dirname(__DIR__) . '/config.local.php';
 }
 
 

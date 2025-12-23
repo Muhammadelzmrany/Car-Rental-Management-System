@@ -4,7 +4,7 @@
  * عرض الفاتورة
  */
 
-require_once 'functions.php';
+require_once '../includes/functions.php';
 
 // Check if user is logged in
 require_login();
@@ -12,7 +12,7 @@ require_login();
 // Check if reservation data exists in session
 if (!isset($_SESSION['reservation_data'])) {
     $error = urlencode("No reservation data found. Please make a reservation first.");
-    header("Location: index.php?error=" . $error);
+    header("Location: ../index.php?error=" . $error);
     exit;
 }
 
@@ -31,14 +31,14 @@ $duration_hours = $reservation_data['duration_hours'] ?? ($duration_days * 24);
 $return_csrf = generate_csrf_token();
 
 // Get database connection
-require_once 'db.php';
+require_once '../includes/db.php';
 
 // Verify reservation belongs to current user
 $verify_stmt = $conn->prepare("SELECT customer_id FROM reservations WHERE id = ? AND customer_id = ?");
 if (!$verify_stmt) {
     log_error("Invoice verify prepare failed: " . $conn->error, __FILE__, __LINE__);
     $error = urlencode("Database error. Please try again later.");
-    header("Location: index.php?error=" . $error);
+    header("Location: ../index.php?error=" . $error);
     exit;
 }
 
@@ -49,7 +49,7 @@ $verify_result = $verify_stmt->get_result();
 if ($verify_result->num_rows === 0) {
     $verify_stmt->close();
     $error = urlencode("Unauthorized access to invoice.");
-    header("Location: index.php?error=" . $error);
+    header("Location: ../index.php?error=" . $error);
     exit;
 }
 $verify_stmt->close();
@@ -59,7 +59,7 @@ $stmt = $conn->prepare("SELECT name, model FROM cars WHERE id = ?");
 if (!$stmt) {
     log_error("Invoice car query prepare failed: " . $conn->error, __FILE__, __LINE__);
     $error = urlencode("Database error. Please try again later.");
-    header("Location: index.php?error=" . $error);
+    header("Location: ../index.php?error=" . $error);
     exit;
 }
 
@@ -70,7 +70,7 @@ $result = $stmt->get_result();
 if ($result->num_rows === 0) {
     $stmt->close();
     $error = urlencode("Car not found.");
-    header("Location: index.php?error=" . $error);
+    header("Location: ../index.php?error=" . $error);
     exit;
 }
 
@@ -208,7 +208,7 @@ if ($user_stmt) {
             <div class="receipt-header">
                 <div class="row">
                     <div class="col-xs-6">
-                          <img alt="Logo" src="img/icon b copy.png" class="img-responsive">
+                          <img alt="Logo" src="../img/icon b copy.png" class="img-responsive">
                     </div>
                     <div class="col-xs-6">
                         <h1>Receipt</h1>
