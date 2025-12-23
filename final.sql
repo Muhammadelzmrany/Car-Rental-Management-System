@@ -4,32 +4,13 @@
 -- Course: Introduction to Database Systems
 -- =========================
 
-DROP DATABASE IF EXISTS carrentalsystem;
-CREATE DATABASE carrentalsystem
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_general_ci;
-
-USE carrentalsystem;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- =========================
--- Table: users (Customers & Admins)
--- =========================
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    phone VARCHAR(20),
-    address VARCHAR(255),
-    isadmin TINYINT(1) DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- =========================
 -- Table: branches (Multiple Offices)
 -- =========================
+DROP TABLE IF EXISTS branches;
 CREATE TABLE branches (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -39,8 +20,24 @@ CREATE TABLE branches (
 );
 
 -- =========================
+-- Table: users (Customers & Admins)
+-- =========================
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+        phone VARCHAR(20),
+    address VARCHAR(255),
+    isadmin TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =========================
 -- Table: cars
 -- =========================
+DROP TABLE IF EXISTS cars;
 CREATE TABLE cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -62,6 +59,7 @@ CREATE TABLE cars (
 -- =========================
 -- Table: reservations
 -- =========================
+DROP TABLE IF EXISTS reservations;
 CREATE TABLE reservations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
@@ -96,16 +94,17 @@ CREATE TABLE reservations (
 -- =========================
 -- Table: payment_transactions
 -- =========================
+DROP TABLE IF EXISTS payment_transactions;
 CREATE TABLE payment_transactions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     reservation_id INT NOT NULL,
     car_id INT NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
     payment_method ENUM('cash', 'credit_card', 'debit_card', 'online', 'bank_transfer') DEFAULT 'cash',
-    transaction_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'completed', 'failed', 'refunded') DEFAULT 'pending',
     notes TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME DEFAULT NULL,
     
     CONSTRAINT fk_payment_transaction_reservation
         FOREIGN KEY (reservation_id) REFERENCES reservations(id)

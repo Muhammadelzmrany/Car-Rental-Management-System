@@ -8,10 +8,10 @@
  */
 
 // Database Configuration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'carrentalsystem');
+define('DB_HOST', 'sql7.freesqldatabase.com');
+define('DB_USER', 'sql7812767');
+define('DB_PASS', 'k4DVdqKavK');
+define('DB_NAME', 'sql7812767');
 define('DB_CHARSET', 'utf8mb4');
 
 // Security Configuration
