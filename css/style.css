@@ -132,38 +132,82 @@ header{
     width: 100%;
     min-height: 100vh;
     position: relative;
-    background: url(img/carhomephoto.webp);
-    background-repeat: no-repeat;
-    background-position: CENTER right;
-    background-size: cover;
     display: grid;
     align-items: center;
     grid-template-columns: repeat(2,1fr);
-    
+    overflow: hidden;
+    padding: 20px;
 }
+
+/* Blurred background image */
+.home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(../img/carhomephoto.webp);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    filter: blur(4px);
+    z-index: 0;
+    transform: scale(1.05); /* Slight scale to prevent white edges from blur */
+}
+
+/* Ensure content is above blur */
+.home > * {
+    position: relative;
+    z-index: 1;
+}
+/* Text card styling */
+.text {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin-left: 50px;
+    max-width: 600px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .text h1{
     font-size: 3.5rem;
     letter-spacing: 2px;
     line-height: 1.2;
     margin-bottom: 1rem;
+    color: #1a1a1a;
+    font-weight: 700;
 }
 .text span{
     color: var(--main-color);
+    font-weight: 700;
 }
 .text p{
-    margin: 0.5rem 0 1rem;
+    margin: 0.5rem 0 1.5rem;
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #555;
+    color: #333;
+    font-weight: 400;
 }
 .pp-stores{
     display: flex;
 
 }
+.app-stores {
+    margin-top: 20px;
+}
 .app-stores img{
     width: 110px;
     margin-right: 1rem;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.app-stores img:hover {
+    transform: scale(1.05);
 }
 .form-container form{
     display: flex;
@@ -639,6 +683,19 @@ header{
     .home{
         grid-template-columns: 1fr;
     }
+    .home {
+        padding: 15px;
+    }
+    .text {
+        margin: 20px auto;
+        padding: 30px 25px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .text h1 {
+        font-size: 2.5rem;
+    }
     .form-container .from{
         position: unset;
     }
@@ -720,8 +777,24 @@ header{
         font-size: 14px;
         font-weight: 400;
     }
+    .home {
+        padding: 10px;
+    }
+    .text {
+        margin: 15px auto;
+        padding: 25px 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     .text h1{
         font-size: 2rem;
+    }
+    .text p {
+        font-size: 0.95rem;
+    }
+    .app-stores img {
+        width: 90px;
+        margin-right: 0.5rem;
     }
     
     .services-container{
