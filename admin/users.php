@@ -26,8 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $msg = 'Invalid user id.';
         } else {
             // Prevent self-modification (dangerous)
-            if ($user_id === (int)($_SESSION['id'] ?? 0) && $action === 'delete') {
-                $msg = 'You cannot delete your own account.';
+            if ($user_id === (int)($_SESSION['id'] ?? 0)) {
+                if ($action === 'delete') {
+                    $msg = 'You cannot delete your own account.';
+                } elseif ($action === 'toggle_admin') {
+                    $msg = 'You cannot change your own admin status.';
+                } else {
+                    // fallthrough
+                }
             } else {
                 if ($action === 'toggle_admin') {
                     // flip isadmin

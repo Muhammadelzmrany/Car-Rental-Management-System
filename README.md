@@ -36,11 +36,10 @@ See `AUDIT_REPORT.md` for the full audit.
 
 ## ERD (Entity Relationship Diagram)
 
-Add your ERD image to `img/erd.png` (recommended size ~1200px width). The README will display it automatically if present:
 
 ![ERD](img/erd.png)
 
-If you don't yet have an ERD image, export one from your database modeling tool and save it as `img/erd.png`.
+
 
 ---
 
