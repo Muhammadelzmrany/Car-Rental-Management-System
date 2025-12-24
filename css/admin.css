@@ -5,12 +5,23 @@
   box-sizing: border-box;
 }
 
+/* Shared color variables for accessible, eye-friendly theme */
+:root{
+  --primary: #2b6ea8;
+  --secondary: #3b82b6;
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --text-color: #1f2937;
+  --muted: #556475;
+  --accent: #3b82f6;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #000000;
-  color: #423636;
+  color: var(--text-color);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* Dark Mode */
@@ -67,15 +78,16 @@ body.dark-mode table td {
 nav {
   width: 100%;
   height: 5em;
-  background: #ffffff;
-  
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  background: rgba(255,255,255,0.90);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   position: sticky;
   top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 1.25rem;
+  z-index: 20;
 }
 .dashboard{
   display: flex;
@@ -83,6 +95,8 @@ nav {
 }
 .logo-image img{
   width: 4em;
+  height: auto;
+  display: block;
 }
 
 .logo-name {
@@ -94,7 +108,7 @@ nav {
 .logo-name .logo_name {
   font-weight: bold;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--text-color);
 }
 .container{
   display: flex;
@@ -122,7 +136,7 @@ main{
 
 .menu-items ul li a {
   text-decoration: none;
-  color: #9c9cbe;
+  color: var(--muted);
   font-size: 1rem;
   display: flex;
   align-items: center;
@@ -131,7 +145,7 @@ main{
 }
 
 .menu-items ul li a:hover {
-  color: #035cba;
+  color: var(--primary);
 }
 
 .mode-toggle {
@@ -176,10 +190,11 @@ main{
 
 /* Add Cars Section */
 #add-cars {
-  background: #ffffff;
+  background: rgba(255,255,255,0.96);
+  color: var(--text-color);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
 }
 
 #add-cars form {
@@ -204,7 +219,7 @@ main{
   padding: 0.7rem;
   border: none;
   border-radius: 5px;
-  background: #007bff;
+  background: var(--primary);
   color: #ffffff;
   font-size: 1rem;
   cursor: pointer;
@@ -212,15 +227,16 @@ main{
 }
 
 #add-cars form button:hover {
-  background: #033f7e;
+  background: var(--accent);
 }
 
 /* Payment Operations Section */
 #payment-operations {
-  background: #ffffff;
+  background: rgba(255,255,255,0.96);
+  color: var(--text-color);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
 }
 .section{
   margin: 0.5em 0;
@@ -241,10 +257,11 @@ main{
 
 /* Reports Section */
 #car-reports {
-  background: #ffffff;
+  background: rgba(255,255,255,0.95);
+  color: #222;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
 }
 
 #car-reports h3 {
@@ -275,22 +292,23 @@ main{
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
-  background: #007bff;
+  background: var(--primary);
   color: #ffffff;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 .actions button:hover {
-  background: #0056b3;
+  background: var(--accent);
 }
 
 /* Customer Information Section */
 #customer-information {
-  background: #ffffff;
+  background: rgba(255,255,255,0.95);
+  color: #222;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
 }
 
 #customer-information table {
@@ -312,4 +330,83 @@ main{
 .success{
   color: green !important;
   font-size: 0.75rem;
+}
+
+/* Admin container background: use photo only inside admin pages, not header */
+/* Layout */
+.admin-container {
+  max-width: 1200px;
+  margin: 6.5rem auto 3rem; /* leave space for fixed header */
+  padding: 2.5rem;
+  border-radius: 12px;
+}
+
+/* Card panels inside admin */
+.panel {
+  background: rgba(255,255,255,0.95);
+  color: #263238;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.35);
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.stat-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,245,245,0.95));
+  padding: 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.stat-card p { color: #6b7280; margin-bottom: 0.25rem; }
+.stat-card h3 { font-size: 1.75rem; color: #1f2937; margin: 0; }
+
+/* Nav buttons */
+.admin-nav { margin-bottom: 1.25rem; }
+.admin-nav ul { display:flex; gap:0.5rem; flex-wrap:wrap; padding:0; margin:0; }
+.admin-nav a {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 16px; border-radius:8px; text-decoration:none;
+  background: linear-gradient(90deg,var(--primary),var(--secondary)); color:#fff;
+  box-shadow: 0 6px 18px rgba(59,130,246,0.12);
+}
+.admin-nav a:hover { transform:translateY(-3px); box-shadow: 0 10px 26px rgba(59,130,246,0.22); }
+
+/* Tables */
+.recent-table, table, th, td { width:100%; }
+.recent-table { overflow-x:auto; }
+table { border-collapse:collapse; }
+th, td { padding:12px 14px; border-bottom:1px solid rgba(0,0,0,0.06); }
+th { background: linear-gradient(90deg,#111827,#374151); color:#fff; font-weight:600; }
+/* Use accessible header gradient */
+th { background: linear-gradient(90deg,var(--primary),var(--secondary)); color:#fff; font-weight:600; }
+tr:hover { background: rgba(15,23,42,0.03); }
+
+/* Status badges */
+.status-badge { padding:6px 10px; border-radius:999px; font-weight:600; font-size:0.85rem; }
+.status-pending { background:#fff7ed; color:#92400e; }
+.status-confirmed { background:#ecfeff; color:#065f46; }
+.status-picked_up { background:#ecfdf5; color:#065f46; }
+.status-returned { background:#eff6ff; color:#1e3a8a; }
+.status-cancelled { background:#ffebe9; color:#7f1d1d; }
+
+/* Forms and inputs */
+input[type="text"], input[type="number"], input[type="email"], input[type="date"], select, textarea {
+  width:100%; padding:10px 12px; border:1px solid rgba(15,23,42,0.08); border-radius:8px; background:#fff;
+}
+label { display:block; margin-bottom:6px; color:#374151; font-weight:600; }
+form button, .btn { background:#2563eb; color:#fff; padding:10px 14px; border-radius:8px; border:none; cursor:pointer; }
+form button:hover, .btn:hover { background:#1e40af; }
+
+/* Responsive tweaks */
+@media (max-width:900px){
+  .admin-container{ margin:5rem 1rem 2rem; padding:1rem; }
+  nav{ padding:0.8rem 1rem; }
+  .admin-nav ul{ gap:0.4rem }
 }

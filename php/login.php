@@ -39,6 +39,21 @@ if (!validate_email($email)) {
 // Get database connection
 require_once '../includes/db.php';
 
+// Initialize login attempts tracking in session
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = [];
+}
+
+// Check lockout for this email
+$attempts = $_SESSION['login_attempts'][$email]['count'] ?? 0;
+$last_attempt = $_SESSION['login_attempts'][$email]['last_time'] ?? 0;
+if ($attempts >= MAX_LOGIN_ATTEMPTS && (time() - $last_attempt) < LOGIN_LOCKOUT_TIME) {
+    $wait = LOGIN_LOCKOUT_TIME - (time() - $last_attempt);
+    $error = urlencode("Too many failed attempts. Try again in $wait seconds.");
+    header("Location: loginview.php?show=signin&signinerror=" . $error);
+    exit;
+}
+
 // Prepare and execute query
 $sql = "SELECT id, name, email, password, isadmin FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
@@ -58,6 +73,10 @@ try {
     $row = $result->fetch_assoc();
     
     if (empty($row)) {
+        // Increment failed attempts
+        $_SESSION['login_attempts'][$email]['count'] = $attempts + 1;
+        $_SESSION['login_attempts'][$email]['last_time'] = time();
+
         $error = urlencode("Invalid email or password.");
         header("Location: loginview.php?show=signin&signinerror=" . $error);
         $stmt->close();
@@ -66,6 +85,10 @@ try {
     
     // Verify password
     if (!password_verify($password, $row['password'])) {
+        // Increment failed attempts
+        $_SESSION['login_attempts'][$email]['count'] = $attempts + 1;
+        $_SESSION['login_attempts'][$email]['last_time'] = time();
+
         $error = urlencode("Invalid email or password.");
         header("Location: loginview.php?show=signin&signinerror=" . $error);
         $stmt->close();
@@ -79,6 +102,10 @@ try {
     $_SESSION["id"] = $row['id'];
     $_SESSION["userName"] = $row['name'];
     $_SESSION["isAdmin"] = isset($row['isadmin']) ? (bool)$row['isadmin'] : false;
+    // Reset login attempts on successful login
+    if (isset($_SESSION['login_attempts'][$email])) {
+        unset($_SESSION['login_attempts'][$email]);
+    }
     
     // Close statement
     $stmt->close();

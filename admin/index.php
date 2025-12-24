@@ -57,105 +57,14 @@ $recent_reservations = $conn->query("
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Car Rental System</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="../css/admin.css?v=3">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <style>
-        .admin-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 100px 20px 50px;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .stat-card h3 {
-            font-size: 2.5rem;
-            color: #474fa0;
-            margin: 10px 0;
-        }
-        .stat-card p {
-            color: #666;
-            font-size: 1rem;
-        }
-        .admin-nav {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        .admin-nav ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .admin-nav a {
-            padding: 12px 24px;
-            background: #474fa0;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .admin-nav a:hover {
-            background: #16163e;
-            transform: translateY(-2px);
-        }
-        .recent-table {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        th {
-            background: #474fa0;
-            color: white;
-            font-weight: 600;
-        }
-        tr:hover {
-            background: #f8f9fa;
-        }
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .status-pending { background: #fff3cd; color: #856404; }
-        .status-confirmed { background: #d1ecf1; color: #0c5460; }
-        .status-picked_up { background: #d4edda; color: #155724; }
-        .status-returned { background: #cce5ff; color: #004085; }
-        .status-cancelled { background: #f8d7da; color: #721c24; }
-    </style>
+    <!-- Admin page styles are in css/admin.css -->
 </head>
 <body>
     <header>
-        <a href="../index.php" class="logo"><img src="../img/icon b copy.png" alt=""></a>
+        <a href="../index.php" class="logo"><img src="../img/log.png" alt="logo"></a>
         <div class="head-btn">
             <label class="welcome">Admin: <?= escape_output($_SESSION["userName"]) ?></label>
             <a href="../php/logout.php" class="sign-in">Sign out</a>
@@ -198,6 +107,7 @@ $recent_reservations = $conn->query("
                 <li><a href="updatecar.php"><i class='bx bx-edit'></i> Update Car Status</a></li>
                 <li><a href="pickup_return.php"><i class='bx bx-car'></i> Manage Pickup/Return</a></li>
                 <li><a href="advanced_reports.php"><i class='bx bx-bar-chart'></i> View Reports</a></li>
+                <li><a href="users.php"><i class='bx bx-user'></i> Manage Users</a></li>
                 <li><a href="../index.php"><i class='bx bx-home'></i> Back to Site</a></li>
             </ul>
         </div>
