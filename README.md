@@ -1,46 +1,185 @@
+<div align="center">
 
-# Car Rental Management System
+# 🚗 Car Rental Management System
 
-This repository contains a complete Car Rental Management System (demo-ready). The README below summarizes the project features, setup steps, and includes an Audit Report and ERD image section.
+**A web-based vehicle rental platform built with PHP and MySQL.**
 
-## Quick Start
+Browse available cars, create reservations, view invoices, record demo payments, and manage rental operations from an admin dashboard.
 
-- Import `final.sql` into your MySQL instance (phpMyAdmin or CLI).  
-- Update `includes/config.php` with DB credentials (default: `localhost`, `root`, no password).  
-- Place the project in XAMPP `htdocs`, start Apache & MySQL, then open `http://localhost/Car-Rental-Management-System/`.
+![PHP](https://img.shields.io/badge/PHP-Backend-777BB4?logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql&logoColor=white)
+![XAMPP](https://img.shields.io/badge/XAMPP-Local%20Development-FB7A24?logo=xampp&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Portfolio%20Demo-596579)
+
+</div>
+
+## Overview
+
+Car Rental Management System is a **PHP + MySQL portfolio project** demonstrating a multi-branch rental workflow, from customer registration and vehicle discovery to reservations, invoices, payment records, and administrative reporting.
+
+The project runs locally with Apache and MySQL (for example, through XAMPP). **No publicly hosted demo is provided.**
+
+## Features
+
+| Customer experience | Administration |
+| --- | --- |
+| Register, sign in, and sign out | Manage cars, prices, status, and images |
+| Browse available cars and daily rental rates | Assign cars to branches |
+| Search by car name/model and filter by branch | View and manage customer accounts |
+| Use advanced filters for branch, year, price, and model | Manage pickup and return statuses |
+| Reserve vehicles for selected rental periods | Review reservations and payment records |
+| View reservation invoices | Run four administrative reports |
+| Access a demo payment form | Monitor availability and fleet operations |
+
+### Reporting
+
+The admin reporting page (`admin/advanced_reports.php`) includes:
+
+1. Reservations by date range
+2. Vehicle status listing
+3. Reservations for a selected customer
+4. Daily payment summaries
+
+> **Reporting note:** The vehicle-status page accepts a date, but its current query displays stored vehicle statuses; it is **not** a historical point-in-time status reconstruction.
+
+## Tech Stack
+
+| Layer | Technologies |
+| --- | --- |
+| Backend | PHP |
+| Database | MySQL, MySQLi |
+| Frontend | HTML, CSS, JavaScript |
+| Local server | Apache via XAMPP |
+| Database setup | SQL schema and demo seed data in `final.sql` |
+
+## Getting Started
+
+### Prerequisites
+
+- PHP with the MySQLi extension
+- Apache web server
+- MySQL
+- XAMPP (recommended for local setup) or an equivalent PHP/MySQL environment
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Muhammadelzmrany/Car-Rental-Management-System.git
+```
+
+Place the cloned folder in your Apache document root, typically `C:\xampp\htdocs\` on Windows when using XAMPP.
+
+### 2. Start Apache and MySQL
+
+Open the XAMPP Control Panel and start **Apache** and **MySQL**.
+
+### 3. Create and import the database
+
+Open `http://localhost/phpmyadmin`, create a database named `carrentalsystem`, and import the repository's `final.sql` file into that database.
+
+Alternatively, run:
+
+```sql
+CREATE DATABASE carrentalsystem;
+```
+
+Then import `final.sql` using your preferred MySQL tool. The script creates the tables and inserts demo data.
+
+### 4. Configure the database connection
+
+For **local development**, edit the database constants in `includes/config.php` to match your own MySQL installation:
+
+```php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', ''); // Use your own local MySQL password if set.
+define('DB_NAME', 'carrentalsystem');
+```
+
+Do **not** commit real database passwords or production credentials. The existing configuration should be moved to a safely ignored local/environment-based setup before public deployment.
+
+### 5. Run the app
+
+Open:
+
+**http://localhost/Car-Rental-Management-System/**
 
 ## Demo Accounts
 
-- Admin: `admin@carrental.com` / `admin123`  
-- Test users: `ahmed@test.com`, `sara@test.com`, `mohamed@test.com` (password: `test123456`)
+The imported SQL file includes sample accounts intended **only for local testing**.
 
-## Audit Summary
+| Role | Email | Password |
+| --- | --- | --- |
+| Admin | `admin@carrental.com` | `admin123` |
+| Customer | `ahmed@test.com` | `test123456` |
+| Customer | `sara@test.com` | `test123456` |
+| Customer | `mohamed@test.com` | `test123456` |
 
-All project requirements have been verified and implemented. Key points:
+> These are public test credentials in the seed dataset. Replace them before any deployment and never use them for real accounts.
 
-- Car management (add/update/delete) with images and branch assignment.  
-- Customer registration and secure login (bcrypt, CSRF, input validation).  
-- Reservation lifecycle with double-booking prevention and branch support.  
-- Advanced search (branch, year, price range, model).  
-- Payments linked to reservations and transaction records.  
-- Four admin reports available at `admin/advanced_reports.php`.  
-- Database schema follows 3NF with proper PKs, FKs, UNIQUE and CHECK constraints.
+## Example Workflow
 
-See `AUDIT_REPORT.md` for the full audit.
+**Customer:** Browse cars → choose a car → enter rental dates/duration → confirm reservation → view invoice → continue to demo payment.
 
-## Admin Features Added
+**Admin:** Sign in as an administrator → manage vehicles and users → update pickup/return status → view reports.
 
-- `admin/users.php`: list users, toggle admin, delete user (CSRF protected).  
-- `admin/updatecar.php`: update car status/price and delete car (checks for active reservations and removes uploaded image).  
-- Admin navigation updated to include "Manage Users".
+## Database Design
 
-## ERD (Entity Relationship Diagram)
+The MySQL schema in `final.sql` contains five core tables:
 
+- `branches` — rental office details
+- `users` — customer and admin accounts
+- `cars` — vehicle inventory, rates, and branch assignments
+- `reservations` — bookings, rental dates, and statuses
+- `payment_transactions` — payment amounts, methods, and statuses
 
-![ERD](img/erd.png)
+The schema uses primary keys, foreign keys, and uniqueness constraints to maintain relationships between records.
 
+![Car Rental Management System Entity Relationship Diagram](img/erd.png)
 
+## Project Structure
+
+```text
+Car-Rental-Management-System/
+├── admin/                  # Dashboard, cars, users, pickup/return, reports
+├── php/                    # Authentication, search, rental, invoice, payment
+├── includes/               # Database connection, configuration, helpers
+├── css/                    # Frontend and admin styles
+├── js/                     # Frontend scripts
+├── img/                    # Static images and ERD
+├── uploads/                # Vehicle upload directory
+├── html/                   # Additional HTML pages
+├── index.php               # Customer-facing home page
+├── final.sql               # Schema and seed data
+└── README.md               # Project documentation
+```
+
+## Important Notes
+
+- **Portfolio/demo project:** It is intended to demonstrate application structure and rental-management workflows, not production readiness.
+- **Payments:** The payment page validates form fields and records transactions in the application's database. **It is not connected to a verified external payment gateway. Do not enter real card details.**
+- **Security:** The code contains security measures such as password hashing, CSRF tokens, and prepared statements in various flows, but this README does not claim a completed security assessment.
+- **Deployment:** Before hosting publicly, review configuration handling, replace sample accounts, assess payment security, and perform end-to-end testing.
+
+## Further Documentation
+
+- [Implementation audit notes](AUDIT_REPORT.md)
+- [Requirements and development notes](PROJECT_REQUIREMENTS_COMPLIANCE.md)
+- [CSS fixes summary](CSS_FIXES_SUMMARY.md)
+
+*Some development notes describe earlier project states; the source code is the reference for current behavior.*
+
+## Possible Next Improvements
+
+- Add real application screenshots and a short walkthrough GIF
+- Integrate a certified payment provider instead of the demo form
+- Add automated tests and a reproducible deployment guide
+- Move configuration values out of committed source files
 
 ---
 
-For a detailed audit and implementation notes, see `AUDIT_REPORT.md` in the project root.
+<div align="center">
+
+**Built as a hands-on PHP & MySQL database-driven web application.**
+
+</div>
