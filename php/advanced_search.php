@@ -113,6 +113,7 @@ $price_range = $price_range_stmt->get_result()->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Car Search</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ui-search.css?v=5">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <style>
         .search-container {
@@ -153,13 +154,13 @@ $price_range = $price_range_stmt->get_result()->fetch_assoc();
         }
     </style>
 </head>
-<body>
+<body class="ui-advanced-search">
     <header>
-        <a href="../index.php" class="logo"><img src="../img/icon b copy.png" alt=""></a>
+        <a href="../index.php" class="logo"><img src="../img/log.png" alt=""></a>
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
-            <li><a href="index.php#home">HOME</a></li>
-            <li><a href="index.php#services">SERVICES</a></li>
+            <li><a href="../index.php#home">HOME</a></li>
+            <li><a href="../index.php#services">SERVICES</a></li>
             <li><a href="advanced_search.php">ADVANCED SEARCH</a></li>
         </ul>
         <?php if (isset($_SESSION["id"])): ?>

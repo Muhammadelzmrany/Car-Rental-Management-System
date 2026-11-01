@@ -1,0 +1,14 @@
+body.ui-advanced-search{background:#f3f7fb;color:#193650;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.ui-advanced-search .search-container{max-width:1120px;margin:26px auto;padding:30px;border-radius:18px;border:1px solid #d9e4ee;box-shadow:0 12px 35px #18345110}
+.ui-advanced-search .search-container h2{font-size:clamp(1.65rem,3vw,2.25rem);font-weight:800;letter-spacing:-.04em;color:#173452}
+.ui-advanced-search .search-form{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.ui-advanced-search .search-form label{color:#415b70;font-weight:750;font-size:.9rem}
+.ui-advanced-search .search-form input,.ui-advanced-search .search-form select{border:1px solid #b3c7d8;border-radius:10px;min-height:46px;width:100%;padding:9px 12px}
+.ui-advanced-search .search-form button{background:#286fae;border-radius:10px;min-height:49px;font-weight:800}
+.ui-advanced-search .services-car{padding-top:94px!important;background:#f3f7fb}
+.ui-advanced-search .services-container{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.ui-advanced-search .services-container .box{border:1px solid #dce4ef;box-shadow:0 12px 30px #18345110}
+.ui-advanced-search .services-container .box .btn{background:#286fae}
+.ui-advanced-search .navbar a{color:#234460}
+.ui-advanced-search .logo img{display:block;max-width:72px}
+@media(max-width:700px){.ui-advanced-search .search-container{padding:19px}.ui-advanced-search .services-car{padding:94px 12px 35px!important}.ui-advanced-search .services-container{grid-template-columns:1fr}}

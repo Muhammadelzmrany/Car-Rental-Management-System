@@ -104,6 +104,7 @@ $csrfToken = generate_csrf_token();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Simulated Payment | Car Rental Management System</title>
+  <link rel="stylesheet" href="../css/ui-payment.css?v=5">
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; background: #f3f6fb; color: #203047; font: 16px/1.6 Arial, sans-serif; }
@@ -120,10 +121,11 @@ $csrfToken = generate_csrf_token();
     .back { border: 1px solid #d3d9e1; color: #24364d; background: white; }
   </style>
 </head>
-<body>
+<body class="ui-payment">
   <main>
+    <a class="payment-back" href="../index.php">← Browse vehicles</a>
     <span class="tag">PORTFOLIO DEMO</span>
-    <h1>Simulated Payment</h1>
+    <h1>Complete your demo reservation</h1><p class="payment-description">A secure, transparent simulation to demonstrate the booking workflow.</p>
     <div class="note"><strong>No real payment or bank transfer.</strong>
       This is a demonstration only. Do not enter or send card information.
     </div>

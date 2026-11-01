@@ -181,9 +181,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['report']) && $_GET['rep
     <title>Reports - Admin</title>
     <link rel="stylesheet" href="../css/style.css?v=3">
     <link rel="stylesheet" href="../css/admin.css?v=3">
+    <link rel="stylesheet" href="../css/ui-admin.css?v=5">
     <style>table{width:100%;border-collapse:collapse}th,td{padding:8px;border:1px solid #eee}fieldset{margin-bottom:16px}</style>
 </head>
-<body>
+<body class="ui-admin">
     <header>
         <a href="../index.php" class="logo"><img src="../img/log.png" alt="logo"></a>
         <div class="head-btn">

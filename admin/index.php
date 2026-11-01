@@ -59,10 +59,11 @@ $recent_reservations = $conn->query("
     <title>Admin Dashboard - Car Rental System</title>
     <link rel="stylesheet" href="../css/style.css?v=3">
     <link rel="stylesheet" href="../css/admin.css?v=3">
+    <link rel="stylesheet" href="../css/ui-admin.css?v=5">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- Admin page styles are in css/admin.css -->
 </head>
-<body>
+<body class="ui-admin">
     <header>
         <a href="../index.php" class="logo"><img src="../img/log.png" alt="logo"></a>
         <div class="head-btn">

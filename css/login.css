@@ -232,3 +232,24 @@ body {
   margin-right: 8px;
   accent-color: #0c0831;
 }
+
+/* 2026 UI refresh */
+body{background:linear-gradient(135deg,#0c2440,#245b8d);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#142c47;padding:60px 16px 28px}
+body *{font-family:inherit}
+.auth-home{position:absolute;top:20px;left:clamp(16px,5vw,48px);color:white;text-decoration:none;font-weight:750;font-size:.92rem}
+.container{max-width:960px;border-radius:22px;padding:50px 40px;box-shadow:0 24px 65px rgba(3,17,37,.24);overflow:hidden}
+.container .cover{border-radius:0 22px 22px 0;overflow:hidden}
+.container .cover .text::before{background:#143b65;opacity:.68}
+.forms .form-content .title{font-size:29px;font-weight:800;color:#142c47;letter-spacing:-.045em}
+.forms .form-content .title:before{height:4px;background:#2870b2;border-radius:5px;width:44px}
+.form-content .input-box i{left:15px;color:#58728d}
+.form-content .input-box input{border:1px solid #c7d5e4;border-radius:11px;padding:0 16px 0 45px;background:#f8fafc;font-size:14px}
+.form-content .input-box input:focus{border-color:#2870b2;box-shadow:0 0 0 3px #2870b21b}
+.forms .form-content .button{margin-top:20px}
+.forms .form-content .button input{border:0;color:white;background:#286eae;font-weight:800;border-radius:10px;padding:0}
+.forms .form-content .button input:hover{background:#18568c}
+.forms .form-content label,.forms .form-content .text a{color:#2467a0;font-weight:700}
+.forms .form-content .input-boxes{margin-top:22px}
+.form-content .input-box{margin:13px 0}
+.error{color:#a7303b!important;font-size:.82rem;margin-top:10px}
+@media(max-width:730px){.container{padding:35px 20px;border-radius:16px}.container .form-content{display:block}.forms .form-content .title{font-size:26px}}

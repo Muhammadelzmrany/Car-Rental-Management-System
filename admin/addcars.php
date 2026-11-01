@@ -82,9 +82,10 @@ $branches = $conn->query('SELECT id, name FROM branches');
     <title>Add New Car - Admin</title>
     <link rel="stylesheet" href="../css/style.css?v=3">
     <link rel="stylesheet" href="../css/admin.css?v=3">
+    <link rel="stylesheet" href="../css/ui-admin.css?v=5">
     <style>label{display:block;margin-top:8px}</style>
 </head>
-<body>
+<body class="ui-admin">
     <header>
         <a href="../index.php" class="logo"><img src="../img/log.png" alt="logo"></a>
         <div class="head-btn">

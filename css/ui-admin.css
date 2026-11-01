@@ -1,0 +1,43 @@
+/* Unified management dashboard visual layer */
+:root{--adm-ink:#1b344e;--adm-blue:#276aa5;--adm-muted:#63788d;--adm-line:#dde7ef;--adm-white:#fff}
+body.ui-admin{background:#f3f7fb!important;color:var(--adm-ink);min-width:320px}
+body.ui-admin *{box-sizing:border-box}
+body.ui-admin header{background:#fff!important;border-bottom:1px solid var(--adm-line);box-shadow:0 4px 17px #142a4210;min-height:73px;padding:12px clamp(15px,4vw,54px)}
+body.ui-admin header .logo{background:none;display:flex;align-items:center;width:auto;height:auto}
+body.ui-admin header .logo::after{content:'CAR RENTAL / ADMIN';color:#173755;font:800 1.05rem/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.025em}
+body.ui-admin header .logo img{display:none}
+body.ui-admin header .head-btn{display:flex;gap:14px;align-items:center}
+body.ui-admin header .sign-in{background:#286eaa;color:white;border-radius:9px;padding:10px 15px;display:inline-block}
+body.ui-admin header .welcome{font-family:system-ui,sans-serif;color:#5a7085;text-transform:none}
+body.ui-admin .admin-container{margin:104px auto 55px;max-width:1220px;background:transparent;padding:0 24px;border-radius:0}
+body.ui-admin .admin-container>h1{font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.04em;color:#173452;margin:0 0 24px}
+body.ui-admin .stat-card{background:white;border:1px solid var(--adm-line);border-radius:14px;padding:22px;text-align:left;box-shadow:0 8px 26px #1834510a}
+body.ui-admin .stat-card p{font-size:.87rem;font-weight:700;color:var(--adm-muted);margin:0 0 10px}
+body.ui-admin .stat-card h3{font-size:2rem;font-weight:850;color:#1d4f7c}
+body.ui-admin .stats-grid{grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:15px}
+body.ui-admin .admin-nav ul{gap:10px;margin:20px 0;display:flex;flex-wrap:wrap}
+body.ui-admin .admin-nav a{padding:12px 17px;background:#fff;color:#245b8e;border:1px solid #c9ddeb;border-radius:10px;font-weight:750;box-shadow:none}
+body.ui-admin .admin-nav a:hover{background:#eaf3fd;transform:translateY(-1px)}
+body.ui-admin .recent-table{background:#fff;border:1px solid var(--adm-line);border-radius:16px;padding:21px;box-shadow:0 8px 30px #1834510c;overflow-x:auto}
+body.ui-admin .recent-table h2{font-size:1.2rem;margin:0 0 16px}
+body.ui-admin table{width:100%;min-width:680px;border-collapse:collapse;background:#fff;border:1px solid var(--adm-line);border-radius:10px}
+body.ui-admin th,body.ui-admin td{width:auto!important;padding:13px 11px;text-align:left;vertical-align:middle;border-bottom:1px solid var(--adm-line);border-left:0;border-right:0;font:inherit;font-size:.88rem;white-space:normal}
+body.ui-admin th{background:#eaf1f8;color:#234765;font-weight:800}
+body.ui-admin td{color:#34526d}
+body.ui-admin table input[type="number"]{width:100%!important;min-width:72px}
+body.ui-admin table select{width:100%;min-width:110px}
+body.ui-admin .admin-container>table{display:block;overflow-x:auto}
+body.ui-admin .admin-container>form,body.ui-admin .admin-container>fieldset{background:#fff;padding:25px;border:1px solid var(--adm-line);border-radius:15px;box-shadow:0 8px 28px #1834510a;max-width:850px}
+body.ui-admin .admin-container input:not([type="hidden"]):not([type="checkbox"]),body.ui-admin .admin-container select,body.ui-admin .admin-container textarea{padding:11px 12px;border:1px solid #b3c8da;border-radius:9px;background:white;color:#1b344e;font:inherit}
+body.ui-admin .admin-container label{font-size:.9rem;font-weight:750;color:#344e67;display:block}
+body.ui-admin .admin-container button{background:#286fab;border:0;border-radius:9px;color:white;padding:10px 15px;font-weight:750;cursor:pointer}
+body.ui-admin .admin-container button:hover{background:#1b5788}
+body.ui-admin .admin-container a{color:#2369a2}
+body.ui-admin .admin-container .admin-nav a{color:#245b8e}
+body.ui-admin .error{background:#fff0f0;border-left:3px solid #be4653;border-radius:7px;padding:10px 15px}
+body.ui-admin .success{background:#ecfaef;border-left:3px solid #318655;border-radius:7px;padding:10px 15px}
+body.ui-admin .admin-container fieldset{border:1px solid var(--adm-line);border-radius:12px;background:#fff;padding:17px}
+body.ui-admin .admin-container fieldset form{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+body.ui-admin .admin-container fieldset input{width:auto;max-width:240px}
+@media(max-width:800px){body.ui-admin header{position:sticky!important;top:0}body.ui-admin .admin-container{margin:30px auto 40px;padding:0 13px}body.ui-admin .admin-container>table{max-width:100%}body.ui-admin .admin-container>form{padding:18px}body.ui-admin header .welcome{display:none}}
+@media(max-width:450px){body.ui-admin header .logo::after{font-size:.8rem}body.ui-admin .admin-nav a{width:100%}body.ui-admin .admin-container fieldset input{width:100%}}

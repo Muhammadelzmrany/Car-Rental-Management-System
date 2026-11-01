@@ -1,0 +1,14 @@
+body.ui-payment{margin:0;min-height:100vh;background:radial-gradient(circle at 95% 4%,#dcecff,transparent 44%),#f3f7fc;color:#142c47;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding:16px}
+.ui-payment *{box-sizing:border-box}
+.ui-payment main{width:min(100%,590px);margin:52px auto;padding:34px;border-radius:18px;background:#fff;border:1px solid #dae5f0;box-shadow:0 22px 65px #1a406220}
+.ui-payment h1{font-size:clamp(1.8rem,4vw,2.25rem);letter-spacing:-.04em;margin:12px 0}
+.ui-payment .payment-description{color:#5b7083;margin:0 0 23px}
+.ui-payment .tag{background:#e5f1fc;color:#205c92;border-radius:30px;padding:7px 12px;font-size:.77rem;letter-spacing:.08em}
+.ui-payment .note{border:1px solid #f0dab2;border-left:4px solid #c08b20;border-radius:10px;padding:17px;background:#fff7e8}
+.ui-payment .summary{border:1px solid #dfe8f1;background:#f8fbff;border-radius:12px;padding:20px;margin:22px 0}
+.ui-payment .amount{font-size:2rem;color:#205b90}
+.ui-payment button{background:#286fae;border-radius:10px;font-weight:800;min-height:51px}
+.ui-payment button:hover{background:#194f81}
+.ui-payment .back{background:#fff;border:1px solid #c7d8e7;border-radius:10px}
+.ui-payment .payment-back{display:inline-block;margin-bottom:14px;color:#215b91;text-decoration:none;font-weight:700}
+@media(max-width:500px){.ui-payment main{margin:20px auto;padding:24px 19px}}
