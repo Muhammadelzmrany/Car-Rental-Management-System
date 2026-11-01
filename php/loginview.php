@@ -6,10 +6,10 @@
 
 require_once '../includes/functions.php';
 
-// Start session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// Use the same session/cookie settings across the application.
+car_rental_start_session();
+header('Cache-Control: private, no-store, max-age=0');
+header('Pragma: no-cache');
 
 // Generate CSRF tokens
 $login_csrf_token = generate_csrf_token();

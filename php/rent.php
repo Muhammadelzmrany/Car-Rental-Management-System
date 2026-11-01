@@ -51,6 +51,8 @@ if ($method === 'GET') {
         exit;
     }
 
+    header('Cache-Control: private, no-store, max-age=0');
+    header('Pragma: no-cache');
     $csrf_token = generate_csrf_token();
     ?>
     <!doctype html>
@@ -145,7 +147,7 @@ if ($method !== 'POST') {
 }
 
 if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
-    header("Location: ../index.php?error=" . urlencode("Security token mismatch. Please try again."));
+    header("Location: ../index.php?error=" . urlencode("Your session expired or changed. Please reopen the rental form and try again."));
     exit;
 }
 

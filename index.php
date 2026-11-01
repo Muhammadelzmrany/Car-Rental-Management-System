@@ -1,6 +1,7 @@
 <?php
-session_start();
-include('includes/db.php');
+require_once __DIR__ . '/includes/functions.php';
+car_rental_start_session();
+require_once __DIR__ . '/includes/db.php';
 
 // جلب السيارات المتاحة فقط
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';

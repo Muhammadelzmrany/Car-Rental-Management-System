@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Check CSRF token
 if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
-    $error = urlencode("Security token mismatch. Please try again.");
+    $error = urlencode("Your session expired or changed. Please open a fresh login page and try again.");
     header("Location: loginview.php?show=signin&signinerror=" . $error);
     exit;
 }

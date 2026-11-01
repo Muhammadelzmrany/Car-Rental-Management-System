@@ -75,12 +75,48 @@ function validate_password($password) {
 }
 
 /**
+ * Start or resume the same PHP session for every application route.
+ * Cookie path "/" is shared by index.php, /php/ and /admin/.
+ * Call before any HTML is sent. Never bypass CSRF validation.
+ */
+function car_rental_start_session() {
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        return true;
+    }
+    if (session_status() === PHP_SESSION_DISABLED || headers_sent()) {
+        error_log('Car Rental: session unavailable or response headers already sent.');
+        return false;
+    }
+
+    ini_set('session.use_only_cookies', '1');
+    ini_set('session.use_strict_mode', '1');
+    $https = (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off')
+        || ((int)($_SERVER['SERVER_PORT'] ?? 0) === 443);
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => $https,
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+
+    if (!session_start()) {
+        error_log('Car Rental: PHP session_start() failed.');
+        return false;
+    }
+    return true;
+}
+
+// Initialize session before page rendering and before loading form tokens.
+car_rental_start_session();
+
+/**
  * Check if user session is active
  * التحقق من وجود جلسة نشطة للمستخدم
  */
 function check_session() {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
+    if (!car_rental_start_session()) {
+        return false;
     }
     return isset($_SESSION['id']) && !empty($_SESSION['id']);
 }
@@ -123,24 +159,27 @@ function require_admin() {
  * توليد رمز CSRF
  */
 function generate_csrf_token() {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
+    if (!car_rental_start_session()) {
+        http_response_code(503);
+        exit('Session service is temporarily unavailable. Please try again shortly.');
     }
-    if (!isset($_SESSION[CSRF_TOKEN_NAME])) {
+    if (!isset($_SESSION[CSRF_TOKEN_NAME])
+        || !is_string($_SESSION[CSRF_TOKEN_NAME])
+        || !preg_match('/\A[a-f0-9]{64}\z/D', $_SESSION[CSRF_TOKEN_NAME])) {
         $_SESSION[CSRF_TOKEN_NAME] = bin2hex(random_bytes(32));
     }
     return $_SESSION[CSRF_TOKEN_NAME];
 }
 
 /**
- * Verify CSRF token
- * التحقق من رمز CSRF
+ * Check that a submitted token matches the current browser session.
  */
 function verify_csrf_token($token) {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    if (!isset($_SESSION[CSRF_TOKEN_NAME])) {
+    if (!car_rental_start_session()
+        || !is_string($token)
+        || !preg_match('/\A[a-f0-9]{64}\z/D', $token)
+        || !isset($_SESSION[CSRF_TOKEN_NAME])
+        || !is_string($_SESSION[CSRF_TOKEN_NAME])) {
         return false;
     }
     return hash_equals($_SESSION[CSRF_TOKEN_NAME], $token);
