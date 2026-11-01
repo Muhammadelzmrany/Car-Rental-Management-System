@@ -43,7 +43,7 @@ try {
     $current_status = $reservation['reservation_status'];
 
     // Allow return only if not cancelled
-    if ($current_status === 'cancelled') {
+    if (!in_array($current_status, ['confirmed', 'picked_up'], true)) {
         throw new Exception("Cancelled reservations cannot be returned.");
     }
 
@@ -71,8 +71,8 @@ try {
 
     $conn->commit();
 
-    // Redirect to Visa payment step
-    header("Location: payment.php?reservation_id={$reservation_id}&from_return=1");
+    // No second payment after a simulated return.
+    header("Location: ../index.php");
     exit;
 } catch (Exception $e) {
     if ($conn->in_transaction) {

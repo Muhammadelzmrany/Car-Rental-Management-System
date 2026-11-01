@@ -34,7 +34,7 @@ $return_csrf = generate_csrf_token();
 require_once '../includes/db.php';
 
 // Verify reservation belongs to current user
-$verify_stmt = $conn->prepare("SELECT customer_id FROM reservations WHERE id = ? AND customer_id = ?");
+$verify_stmt = $conn->prepare("SELECT customer_id, reservation_status FROM reservations WHERE id = ? AND customer_id = ?");
 if (!$verify_stmt) {
     log_error("Invoice verify prepare failed: " . $conn->error, __FILE__, __LINE__);
     $error = urlencode("Database error. Please try again later.");
@@ -52,6 +52,8 @@ if ($verify_result->num_rows === 0) {
     header("Location: ../index.php?error=" . $error);
     exit;
 }
+$reservation_row = $verify_result->fetch_assoc();
+$reservation_status = $reservation_row['reservation_status'];
 $verify_stmt->close();
 
 // Get car information
@@ -248,13 +250,10 @@ if ($user_stmt) {
                         <td>Subtotal</td>
                         <td>$<?= number_format($total_cost, 2) ?></td>
                     </tr>
-                    <tr>
-                        <td>Tax (10%)</td>
-                        <td>$<?= number_format($total_cost * 0.1, 2) ?></td>
-                    </tr>
+                    
                     <tr>
                         <td>Total</td>
-                        <td><b>$<?= number_format($total_cost + ($total_cost * 0.1), 2) ?></b></td>
+                        <td><b>$<?= number_format($total_cost, 2) ?></b></td>
                     </tr>
                 </tbody>
             </table>
@@ -262,17 +261,24 @@ if ($user_stmt) {
                 <h5>Thank you for your business!</h5>
                 <p>Date: <?= date('Y-m-d') ?> | Time: <?= date('h:i A') ?></p>
                 <div style="margin-top: 20px;">
-                    <a href="payment.php?reservation_id=<?= (int)$reservation_id ?>" 
-                       style="display: inline-block; padding: 12px 30px; background: #4a90e2; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
-                        Proceed to Payment
+                    <p style="font-weight:bold;color:#805900">Portfolio demo only — no real rental contract or charges.</p>
+                    <?php if ($reservation_status === 'pending'): ?>
+                    <a href="payment.php?reservation_id=<?= (int)$reservation_id ?>"
+                       style="display:inline-block;padding:12px 30px;background:#4a90e2;color:white;text-decoration:none;border-radius:5px;font-weight:bold">
+                        Simulate Payment (No Charge)
                     </a>
-                    <form method="POST" action="return_confirm.php" style="display: inline-block; margin-left: 10px;">
+                    <?php elseif (in_array($reservation_status, ['confirmed', 'picked_up'], true)): ?>
+                    <p style="color:#216340;font-weight:bold">Demo payment confirmed.</p>
+                    <form method="POST" action="return_confirm.php" style="display:inline-block;margin-left:10px">
                         <input type="hidden" name="csrf_token" value="<?= escape_output($return_csrf) ?>">
                         <input type="hidden" name="reservation_id" value="<?= (int)$reservation_id ?>">
-                        <button type="submit" style="padding: 12px 30px; background: #2c7a7b; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
-                            Confirm Return
+                        <button type="submit" style="padding:12px 30px;background:#2c7a7b;color:white;border:0;border-radius:5px;font-weight:bold;cursor:pointer">
+                            Confirm Demo Return
                         </button>
                     </form>
+                    <?php else: ?>
+                    <p>Reservation status: <?= escape_output($reservation_status) ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

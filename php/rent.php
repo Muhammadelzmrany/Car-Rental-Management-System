@@ -332,18 +332,7 @@ try {
     $update_stmt->execute();
     $update_stmt->close();
 
-    // Record payment transaction linked to the reservation and car
-    $payment_method = 'cash'; // default method for on-site/standard bookings
-    $payment_stmt = $conn->prepare("
-        INSERT INTO payment_transactions (reservation_id, car_id, amount, payment_method, status, transaction_date, created_at)
-        VALUES (?, ?, ?, ?, 'completed', NOW(), NOW())
-    ");
-    if (!$payment_stmt) {
-        throw new Exception("Payment transaction preparation failed.");
-    }
-    $payment_stmt->bind_param("iids", $reservation_id, $car_id, $total_cost, $payment_method);
-    $payment_stmt->execute();
-    $payment_stmt->close();
+    // Payment is not recorded on booking. The user can simulate a payment after viewing the invoice.
 
     $conn->commit();
 
