@@ -41,7 +41,7 @@ foreach ($required_tables as $table) {
 echo "<br>";
 
 if (!empty($missing_tables)) {
-    echo "<strong>⚠️ WARNING:</strong> Some tables are missing. Please import final.sql<br>";
+    echo "<strong>⚠️ WARNING:</strong> Some tables are missing. Please import database/schema_and_seed.sql<br>";
     echo "Missing tables: " . implode(', ', $missing_tables) . "<br><br>";
 } else {
     echo "✅ <strong>All required tables exist!</strong><br><br>";
@@ -110,7 +110,7 @@ if (empty($missing_tables)) {
 } else {
     echo "<div style='background: #f8d7da; padding: 15px; border-radius: 5px; color: #721c24;'>";
     echo "<strong>⚠️ System needs setup!</strong><br>";
-    echo "Please import final.sql to create the required tables.";
+    echo "Please import database/schema_and_seed.sql to create the required tables.";
     echo "</div>";
 }
 

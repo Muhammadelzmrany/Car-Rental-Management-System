@@ -50,7 +50,7 @@ The admin reporting page (`admin/advanced_reports.php`) includes:
 | Database | MySQL, MySQLi |
 | Frontend | HTML, CSS, JavaScript |
 | Local server | Apache via XAMPP |
-| Database setup | SQL schema and demo seed data in `final.sql` |
+| Database setup | SQL schema and demo seed data in `database/schema_and_seed.sql` |
 
 ## Getting Started
 
@@ -75,7 +75,7 @@ Open the XAMPP Control Panel and start **Apache** and **MySQL**.
 
 ### 3. Create and import the database
 
-Open `http://localhost/phpmyadmin`, create a database named `carrentalsystem`, and import the repository's `final.sql` file into that database.
+Open `http://localhost/phpmyadmin`, create a database named `carrentalsystem`, and import the repository's `database/schema_and_seed.sql` file into that database.
 
 Alternatively, run:
 
@@ -83,7 +83,7 @@ Alternatively, run:
 CREATE DATABASE carrentalsystem;
 ```
 
-Then import `final.sql` using your preferred MySQL tool. The script creates the tables and inserts demo data.
+Then import `database/schema_and_seed.sql` using your preferred MySQL tool. The script creates the tables and inserts demo data.
 
 ### 4. Configure the database connection
 
@@ -125,7 +125,7 @@ The imported SQL file includes sample accounts intended **only for local testing
 
 ## Database Design
 
-The MySQL schema in `final.sql` contains five core tables:
+The MySQL schema in `database/schema_and_seed.sql` contains five core tables:
 
 - `branches` — rental office details
 - `users` — customer and admin accounts
@@ -135,23 +135,32 @@ The MySQL schema in `final.sql` contains five core tables:
 
 The schema uses primary keys, foreign keys, and uniqueness constraints to maintain relationships between records.
 
-![Car Rental Management System Entity Relationship Diagram](img/erd.png)
+![Car Rental Management System Entity Relationship Diagram](docs/assets/erd.png)
 
 ## Project Structure
 
 ```text
 Car-Rental-Management-System/
-├── admin/                  # Dashboard, cars, users, pickup/return, reports
-├── php/                    # Authentication, search, rental, invoice, payment
-├── includes/               # Database connection, configuration, helpers
-├── css/                    # Frontend and admin styles
-├── js/                     # Frontend scripts
-├── img/                    # Static images and ERD
-├── uploads/                # Vehicle upload directory
+├── .github/                # GitHub configuration and workflows
+├── admin/                  # Admin dashboard and operations
+├── php/                    # Login, rental, search, payment, invoices
+├── includes/               # Configuration, database and helpers
+├── css/                    # Stylesheets
+├── js/                     # Client-side scripts
 ├── html/                   # Additional HTML pages
-├── index.php               # Customer-facing home page
-├── final.sql               # Schema and seed data
-└── README.md               # Project documentation
+├── img/                    # Application images and media
+├── uploads/                # Vehicle images and uploaded files
+├── database/
+│   └── schema_and_seed.sql # MySQL tables and example data
+├── docs/
+│   ├── README.md           # Documentation index
+│   ├── assets/             # ERD diagram
+│   ├── audits/             # Requirements and implementation audits
+│   └── maintenance/        # CSS and image maintenance notes
+├── config.local.php.example
+├── start.bat               # Local XAMPP startup helper (Windows)
+├── index.php               # Application entry point
+└── README.md               # Project overview and setup guide
 ```
 
 ## Important Notes
@@ -163,9 +172,11 @@ Car-Rental-Management-System/
 
 ## Further Documentation
 
-- [Implementation audit notes](AUDIT_REPORT.md)
-- [Requirements and development notes](PROJECT_REQUIREMENTS_COMPLIANCE.md)
-- [CSS fixes summary](CSS_FIXES_SUMMARY.md)
+- [Documentation index](docs/README.md)
+
+- [Implementation audit notes](docs/audits/AUDIT_REPORT.md)
+- [Requirements and development notes](docs/audits/PROJECT_REQUIREMENTS_COMPLIANCE.md)
+- [CSS fixes summary](docs/maintenance/CSS_FIXES_SUMMARY.md)
 
 *Some development notes describe earlier project states; the source code is the reference for current behavior.*
 

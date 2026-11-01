@@ -225,7 +225,7 @@ The Car Rental Management System has been thoroughly scanned and verified. All 8
 ### 7. Database Design
 **Status:** ✅ **COMPLETE**
 
-**File:** `final.sql` - Complete database schema
+**File:** `database/schema_and_seed.sql` - Complete database schema
 
 #### Tables (5):
 1. **branches** - Multiple office locations
@@ -341,7 +341,7 @@ Test Customer Accounts:
 
 ```
 ✅ Config & Setup
-  ├─ final.sql (complete schema)
+  ├─ database/schema_and_seed.sql (complete schema)
   ├─ config.local.php.example
   └─ includes/
       ├─ config.php

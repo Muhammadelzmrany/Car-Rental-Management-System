@@ -98,7 +98,7 @@
 
 ### 6. Car Images for Database (Uploads Folder)
 
-These images are referenced in `final.sql` and should be placed in the `uploads/` folder:
+These images are referenced in `database/schema_and_seed.sql` and should be placed in the `uploads/` folder:
 
 | Image Name | Car Model | Search Terms |
 |------------|-----------|--------------|
