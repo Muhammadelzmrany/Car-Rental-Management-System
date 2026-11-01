@@ -53,76 +53,89 @@ if ($method === 'GET') {
 
     $csrf_token = generate_csrf_token();
     ?>
-    <!DOCTYPE html>
+    <!doctype html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rent Car</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <style>
-            .rent-form-wrapper { max-width: 500px; margin: 40px auto; padding: 20px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
-            .rent-form-wrapper h2 { margin-bottom: 15px; }
-            .rent-form-wrapper label { display: block; margin: 10px 0 4px; }
-            .rent-form-wrapper input, .rent-form-wrapper select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
-            .rent-form-wrapper button { margin-top: 15px; width: 100%; padding: 12px; background: #1e3a63; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
-            .rent-form-wrapper button:hover { background: #162c4a; }
-            .rent-summary { margin-bottom: 10px; }
-        </style>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Reserve a Car | Car Rental</title>
+      <link rel="stylesheet" href="../css/booking-pages.css?v=2">
     </head>
-    <body>
-        <div class="rent-form-wrapper">
-            <div class="rent-summary">
-                <strong><?= escape_output($car['name'] . ' ' . $car['model'] . ' ' . $car['year']) ?></strong><br>
-                Daily rate: $<?= number_format((float)$car['price_per_day'], 2) ?>
-            </div>
+    <body class="cr-page">
+      <nav class="cr-nav"><div class="cr-nav-inner">
+        <a class="cr-logo" href="../index.php">CAR <span>RENTAL</span></a>
+        <a class="cr-link" href="../index.php">← Back to cars</a>
+      </div></nav>
+      <main class="cr-main">
+        <p class="cr-overline">Step 1 of 2 · Booking</p>
+        <h1 class="cr-title">Reserve your next ride</h1>
+        <p class="cr-subtitle">Set your pickup time and duration, then review your reservation.</p>
+        <div class="cr-columns">
+          <section class="cr-card">
+            <h2>Rental details</h2>
             <form method="POST" action="rent.php">
-                <input type="hidden" name="csrf_token" value="<?= escape_output($csrf_token) ?>">
-                <input type="hidden" name="car_id" value="<?= (int)$car['id'] ?>">
-
-                <label for="pickup_datetime">Pickup date & time</label>
-                <input type="datetime-local" id="pickup_datetime" name="pickup_datetime" required>
-
-                <label for="duration_value">Duration</label>
-                <input type="number" id="duration_value" name="duration_value" value="1" min="0.25" step="0.25" required>
-
-                <label for="duration_unit">Unit</label>
-                <select id="duration_unit" name="duration_unit" required>
+              <input type="hidden" name="csrf_token" value="<?= escape_output($csrf_token) ?>">
+              <input type="hidden" name="car_id" value="<?= (int)$car['id'] ?>">
+              <div class="cr-field">
+                <label for="pickup_datetime">Pickup date &amp; time</label>
+                <input class="cr-control" type="datetime-local" id="pickup_datetime" name="pickup_datetime" required>
+                <small class="cr-hint">Select your preferred pickup date and time.</small>
+              </div>
+              <div class="cr-two">
+                <div class="cr-field">
+                  <label for="duration_value">Duration</label>
+                  <input class="cr-control" type="number" id="duration_value" name="duration_value" value="1" min="0.25" step="0.25" required>
+                </div>
+                <div class="cr-field">
+                  <label for="duration_unit">Unit</label>
+                  <select class="cr-control" id="duration_unit" name="duration_unit" required>
                     <option value="hours">Hours</option>
                     <option value="days" selected>Days</option>
                     <option value="weeks">Weeks</option>
                     <option value="months">Months</option>
                     <option value="years">Years</option>
-                </select>
-
-                <button type="submit">Confirm Rental</button>
+                  </select>
+                </div>
+              </div>
+              <div class="cr-note">Portfolio demo only. No real vehicle is reserved and no real charges are made.</div>
+              <button class="cr-btn" type="submit">Continue to summary →</button>
             </form>
+          </section>
+          <aside class="cr-card">
+            <span class="cr-tag">Selected vehicle</span>
+            <p class="cr-car"><?= escape_output($car['name'] . ' ' . $car['model'] . ' ' . $car['year']) ?></p>
+            <dl class="cr-facts">
+              <div><dt>Daily rate</dt><dd>$<?= number_format((float)$car['price_per_day'], 2) ?></dd></div>
+              <div><dt>Estimated total</dt><dd id="cr-estimate" class="cr-amount">—</dd></div>
+            </dl>
+            <p class="cr-foot">Estimate only. The server calculates the final amount on submission.</p>
+          </aside>
         </div>
-        <script>
-            // Set default and min to the client's current local time (up to minutes)
-            (function() {
-                const input = document.getElementById('pickup_datetime');
-                if (!input) return;
-                const now = new Date();
-                now.setSeconds(0, 0);
-                const pad = (value) => String(value).padStart(2, '0');
-                const localValue = [
-                    now.getFullYear(),
-                    pad(now.getMonth() + 1),
-                    pad(now.getDate())
-                ].join('-') + 'T' + [
-                    pad(now.getHours()),
-                    pad(now.getMinutes())
-                ].join(':');
-                input.value = localValue;
-                input.min = localValue;
-            })();
-        </script>
+      </main>
+      <script>
+        (function(){
+          const pickup=document.getElementById('pickup_datetime');
+          const duration=document.getElementById('duration_value');
+          const unit=document.getElementById('duration_unit');
+          const output=document.getElementById('cr-estimate');
+          const rate=<?= json_encode((float)$car['price_per_day']) ?>;
+          const pad=x=>String(x).padStart(2,'0');
+          const n=new Date();n.setSeconds(0,0);
+          const local=[n.getFullYear(),pad(n.getMonth()+1),pad(n.getDate())].join('-')+'T'+pad(n.getHours())+':'+pad(n.getMinutes());
+          pickup.value=local;pickup.min=local;
+          const factors={hours:1/24,days:1,weeks:7,months:30,years:365};
+          function update(){
+            const v=Number(duration.value);
+            const sum=rate*v*factors[unit.value];
+            output.textContent=v>0&&Number.isFinite(sum)?'$'+sum.toFixed(2):'—';
+          }
+          duration.addEventListener('input',update);unit.addEventListener('change',update);update();
+        })();
+      </script>
     </body>
     </html>
     <?php
     exit;
-}
 
 // POST: process rental
 if ($method !== 'POST') {

@@ -93,195 +93,66 @@ if ($user_stmt) {
 }
 ?>
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html lang="en">
 <head>
-    <title>Car Rental Portal | Invoice</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        #container {
-            margin: 50px auto;
-            max-width: 800px;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .receipt-main {
-            width: 100%;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .receipt-header {
-            margin-bottom: 20px;
-        }
-
-        .receipt-header img {
-            max-width: 100px;
-        }
-
-        .receipt-header h1 {
-            font-size: 24px;
-            color:rgb(31, 58, 87);
-            text-align: right;
-        }
-
-        .receipt-header-mid {
-            margin-bottom: 20px;
-        }
-
-        .receipt-header-mid p {
-            margin: 5px 0;
-        }
-
-        .receipt-header-mid b {
-            color:rgb(28, 65, 104);
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .table thead th {
-            background:rgb(48, 89, 132);
-            color: white;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .table tbody td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            background: #f9f9f9;
-        }
-
-        .table tbody tr:nth-child(even) td {
-            background: #eef5ff;
-        }
-
-        .receipt-footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .receipt-footer h5 {
-            color:rgb(22, 76, 133);
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 768px) {
-            #container {
-                padding: 10px;
-            }
-
-            .receipt-header img {
-                max-width: 80px;
-            }
-
-            .receipt-header h1 {
-                font-size: 20px;
-            }
-
-            .table thead th, 
-            .table tbody td {
-                padding: 8px;
-                font-size: 14px;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservation #<?= (int)$reservation_id ?> | Car Rental</title>
+  <link rel="stylesheet" href="../css/booking-pages.css?v=2">
 </head>
-<body>
-    <div id="container">
-        <div class="receipt-main">
-            <div class="receipt-header">
-                <div class="row">
-                    <div class="col-xs-6">
-                          <img alt="Logo" src="../img/icon b copy.png" class="img-responsive">
-                    </div>
-                    <div class="col-xs-6">
-                        <h1>Receipt</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="receipt-header-mid">
-                <div class="row">
-                    <div>
-                        <p><b>Username:</b> <?= escape_output($_SESSION['userName']) ?></p>
-                        <p><b>Phone:</b> <?= escape_output($user_phone) ?></p>
-
-                    </div>
-                </div>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Details</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Car Model</td>
-                        <td><?= escape_output($car['name'] . ' ' . $car['model']) ?></td>
-                    </tr>
-                    <tr>
-                        <td>Rental Period</td>
-                        <td><?= escape_output($pickup_display) ?> - <?= escape_output($return_display) ?> (<?= escape_output($duration_label) ?>)</td>
-                    </tr>
-                    <tr>
-                        <td>Daily Rate</td>
-                        <td>$<?= number_format($daily_rate, 2) ?></td>
-                    </tr>
-                    <tr>
-                        <td>Subtotal</td>
-                        <td>$<?= number_format($total_cost, 2) ?></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Total</td>
-                        <td><b>$<?= number_format($total_cost, 2) ?></b></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="receipt-footer">
-                <h5>Thank you for your business!</h5>
-                <p>Date: <?= date('Y-m-d') ?> | Time: <?= date('h:i A') ?></p>
-                <div style="margin-top: 20px;">
-                    <p style="font-weight:bold;color:#805900">Portfolio demo only — no real rental contract or charges.</p>
-                    <?php if ($reservation_status === 'pending'): ?>
-                    <a href="payment.php?reservation_id=<?= (int)$reservation_id ?>"
-                       style="display:inline-block;padding:12px 30px;background:#4a90e2;color:white;text-decoration:none;border-radius:5px;font-weight:bold">
-                        Simulate Payment (No Charge)
-                    </a>
-                    <?php elseif (in_array($reservation_status, ['confirmed', 'picked_up'], true)): ?>
-                    <p style="color:#216340;font-weight:bold">Demo payment confirmed.</p>
-                    <form method="POST" action="return_confirm.php" style="display:inline-block;margin-left:10px">
-                        <input type="hidden" name="csrf_token" value="<?= escape_output($return_csrf) ?>">
-                        <input type="hidden" name="reservation_id" value="<?= (int)$reservation_id ?>">
-                        <button type="submit" style="padding:12px 30px;background:#2c7a7b;color:white;border:0;border-radius:5px;font-weight:bold;cursor:pointer">
-                            Confirm Demo Return
-                        </button>
-                    </form>
-                    <?php else: ?>
-                    <p>Reservation status: <?= escape_output($reservation_status) ?></p>
-                    <?php endif; ?>
-                </div>
-            </div>
+<body class="cr-page">
+  <nav class="cr-nav cr-no-print"><div class="cr-nav-inner">
+    <a class="cr-logo" href="../index.php">CAR <span>RENTAL</span></a>
+    <a class="cr-link" href="../index.php">← Back to cars</a>
+  </div></nav>
+  <main class="cr-main">
+    <div class="cr-invoice">
+      <p class="cr-overline">Step 2 of 2 · Reservation</p>
+      <h1 class="cr-title">Reservation summary</h1>
+      <p class="cr-subtitle cr-no-print">Review your details and proceed to simulated payment.</p>
+      <article class="cr-card">
+        <header class="cr-invoice-header">
+          <div>
+            <span class="cr-tag">CAR RENTAL · DEMO</span>
+            <h2>Reservation #<?= (int)$reservation_id ?></h2>
+            <p class="cr-foot">Created <?= escape_output(date('M j, Y')) ?></p>
+          </div>
+          <span class="cr-status cr-status-<?= escape_output($reservation_status) ?>"><?= escape_output(str_replace('_', ' ', ucfirst($reservation_status))) ?></span>
+        </header>
+        <p class="cr-note">This is a portfolio demonstration, not a real rental contract or tax invoice. No real payments.</p>
+        <div class="cr-meta">
+          <div><span>Customer</span><strong><?= escape_output($_SESSION['userName'] ?? '') ?></strong></div>
+          <div><span>Phone</span><strong><?= escape_output($user_phone) ?></strong></div>
         </div>
+        <table class="cr-table">
+          <thead><tr><th scope="col">Description</th><th scope="col">Details</th></tr></thead>
+          <tbody>
+            <tr><td>Vehicle</td><td><?= escape_output($car['name'] . ' ' . $car['model']) ?></td></tr>
+            <tr><td>Pickup</td><td><?= escape_output($pickup_display) ?></td></tr>
+            <tr><td>Return</td><td><?= escape_output($return_display) ?></td></tr>
+            <tr><td>Duration</td><td><?= escape_output($duration_label) ?></td></tr>
+            <tr><td>Daily rate</td><td>$<?= number_format($daily_rate, 2) ?></td></tr>
+            <tr class="cr-total"><td>Total (demo)</td><td>$<?= number_format($total_cost, 2) ?></td></tr>
+          </tbody>
+        </table>
+        <div class="cr-actions">
+          <?php if ($reservation_status === 'pending'): ?>
+            <a class="cr-btn" href="payment.php?reservation_id=<?= (int)$reservation_id ?>">Simulate payment — no charge</a>
+          <?php elseif (in_array($reservation_status, ['confirmed', 'picked_up'], true)): ?>
+            <form method="POST" action="return_confirm.php">
+              <input type="hidden" name="csrf_token" value="<?= escape_output($return_csrf) ?>">
+              <input type="hidden" name="reservation_id" value="<?= (int)$reservation_id ?>">
+              <button class="cr-btn cr-btn-green" type="submit">Confirm demo return</button>
+            </form>
+          <?php else: ?>
+            <span>Reservation status: <?= escape_output($reservation_status) ?></span>
+          <?php endif; ?>
+          <button class="cr-btn cr-btn-alt cr-no-print" type="button" onclick="window.print()">Print summary</button>
+        </div>
+        <p class="cr-foot">All prices are illustrative; this document does not prove that any money was paid.</p>
+      </article>
     </div>
+  </main>
 </body>
 </html>
