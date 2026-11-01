@@ -24,8 +24,11 @@ Thumbs.db
 *.tmp
 *.temp
 
-
-
-
-
-
+# Never commit environment variables or copied backups of configuration
+.env
+.env.*
+!.env.example
+config.local.php.*
+!config.local.php.example
+*.bak
+*.backup

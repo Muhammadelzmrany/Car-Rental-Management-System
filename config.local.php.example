@@ -1,25 +1,16 @@
 <?php
 /**
- * Local Configuration Example
- * مثال على ملف الإعدادات المحلي
- * 
- * Copy this file to config.local.php and update with your local settings
- * انسخ هذا الملف إلى config.local.php وحدّث الإعدادات المحلية
+ * Local-only configuration example.
+ *
+ * Copy this file to config.local.php and change settings for your local
+ * MySQL instance. Git ignores config.local.php.
+ *
+ * Never publish or commit a real password.
  */
-
-// Override database settings for local development
-// تجاوز إعدادات قاعدة البيانات للتطوير المحلي
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', 'your_password_here');
+define('DB_PASS', ''); // Replace if your local database requires a password.
 define('DB_NAME', 'carrentalsystem');
 
-// Enable error display for development
-// تفعيل عرض الأخطاء للتطوير
-define('DISPLAY_ERRORS', true);
-
-
-
-
-
-
+// Development only; keep false on public servers.
+define('DISPLAY_ERRORS', false);

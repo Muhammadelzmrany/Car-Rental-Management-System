@@ -87,16 +87,21 @@ Then import `database/schema_and_seed.sql` using your preferred MySQL tool. The 
 
 ### 4. Configure the database connection
 
-For **local development**, edit the database constants in `includes/config.php` to match your own MySQL installation:
+Database settings are read from **environment variables**, an ignored `config.local.php` file, or safe XAMPP demo defaults. Never edit or commit credentials inside `includes/config.php`.
+
+For local development, copy `config.local.php.example` to `config.local.php` in the project root and adjust the database credentials:
 
 ```php
+<?php
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', ''); // Use your own local MySQL password if set.
+define('DB_PASS', ''); // Enter your local database password if set.
 define('DB_NAME', 'carrentalsystem');
 ```
 
-Do **not** commit real database passwords or production credentials. The existing configuration should be moved to a safely ignored local/environment-based setup before public deployment.
+`config.local.php` is ignored by Git. Environment variables `DB_HOST`, `DB_USER`, `DB_PASS`, and `DB_NAME` are also supported when there is no local override. Do not upload `config.local.php` to a publicly readable document root without proper server-side PHP configuration. **If any past credentials were committed, rotate them — deleting them from the latest commit does not erase Git history.**
+
+For public demo deployment and hosting limitations, see [Free Hosting Guide](docs/HOSTING.md).
 
 ### 5. Run the app
 
@@ -173,6 +178,7 @@ Car-Rental-Management-System/
 ## Further Documentation
 
 - [Documentation index](docs/README.md)
+- [Free PHP + MySQL hosting guide](docs/HOSTING.md)
 
 - [Implementation audit notes](docs/audits/AUDIT_REPORT.md)
 - [Requirements and development notes](docs/audits/PROJECT_REQUIREMENTS_COMPLIANCE.md)

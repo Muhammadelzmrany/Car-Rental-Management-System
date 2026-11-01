@@ -21,6 +21,10 @@ For installation and an overview, start with the [main README](../README.md).
 
 > **Documentation status:** Some audit and troubleshooting files are historical snapshots and may describe issues that have since changed. Check the current source code and assets before treating any old report as a current test result.
 
+## Hosting
+
+- [Free PHP & MySQL hosting and deployment guide](HOSTING.md)
+
 ## Database
 
 The SQL schema and sample records are available at [database/schema_and_seed.sql](../database/schema_and_seed.sql).
