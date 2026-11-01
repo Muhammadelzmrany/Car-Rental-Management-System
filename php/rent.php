@@ -136,6 +136,7 @@ if ($method === 'GET') {
     </html>
     <?php
     exit;
+}
 
 // POST: process rental
 if ($method !== 'POST') {
